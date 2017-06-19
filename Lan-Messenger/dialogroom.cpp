@@ -32,6 +32,6 @@ DialogRoom::~DialogRoom()
 
 void DialogRoom::on_btnJoin_clicked()
 {
-    emit joinRoom(ui->txtRoom->text());
+	emit joinRoom(ui->txtRoom->text());
     this->deleteLater();
 }

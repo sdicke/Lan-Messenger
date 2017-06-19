@@ -33,10 +33,14 @@ PMWindow::~PMWindow()
 
 void PMWindow::on_btnSend_clicked()
 {
-    emit enteredText(ui->txtInput->text());
-    ui->txtChat->append("Me: " + ui->txtInput->text());
-    ui->txtInput->clear();
-    ui->txtInput->setFocus();
+	QString message = ui->txtInput->text();
+	if (!message.isEmpty())
+	{
+		emit enteredText(message);
+		ui->txtChat->append("Me: " + ui->txtInput->text());
+		ui->txtInput->clear();
+		ui->txtInput->setFocus();
+	}
 }
 
 void PMWindow::receivedPM(QString text)

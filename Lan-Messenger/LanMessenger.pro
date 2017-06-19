@@ -12,12 +12,7 @@ TARGET = LanMessenger
 TEMPLATE = app
 
 CONFIG += release
-QMAKE_CXXFLAGS += -std=c++0x
-
-# STATIC LINKING
-CONFIG += static
-QMAKE_CXXFLAGS += -static -static-libgcc -static-libstdc++
-QMAKE_LFLAGS   += -static -static-libgcc -static-libstdc++
+QMAKE_CXXFLAGS += -std=c++14
 
 SOURCES += main.cpp\
         mainwindow.cpp \

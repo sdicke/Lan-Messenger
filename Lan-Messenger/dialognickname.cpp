@@ -32,6 +32,11 @@ DialogNickName::~DialogNickName()
 
 void DialogNickName::on_btnOk_clicked()
 {
-    emit setName(ui->txtName->text());
+	QString name = ui->txtName->text();
+	if (name.isEmpty())
+	{
+		name = "anonymous";
+	}
+	emit setName(name);
     this->deleteLater();
 }
