@@ -41,6 +41,7 @@ void PMWindow::on_btnSend_clicked()
 		ui->txtInput->clear();
 		ui->txtInput->setFocus();
 	}
+	ui->txtInput->setFocus();
 }
 
 void PMWindow::receivedPM(QString text)
