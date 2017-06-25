@@ -1,0 +1,40 @@
+#ifndef HISTORYSAVER_HPP
+#define HISTORYSAVER_HPP
+
+#include <cstdint>
+#include <QObject>
+#include <QFile>
+#include <QStandardPaths>
+#include <QStringList>
+#include <QDebug>
+#include <QDir>
+#include <QByteArray>
+
+class HistorySaver : public QObject
+{
+
+	Q_OBJECT
+
+	public:
+		HistorySaver(QString partner);
+		~HistorySaver();
+
+	private:
+		qint64 endpos;
+		QFile file;
+
+	signals:
+		void saveFailed();
+		void lineLoaded();
+		void loadFailed();
+		void hasLine(QByteArray line);
+		void hasBlock(QByteArray block);
+
+	public slots:
+		void saveLine(QString line);
+		void loadLine();
+		void loadBlock();
+
+};
+
+#endif // HISTORYSAVER_HPP

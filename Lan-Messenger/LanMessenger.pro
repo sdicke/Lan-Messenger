@@ -22,7 +22,8 @@ SOURCES += main.cpp\
     pmwindow.cpp \
     roomwindow.cpp \
     dialogroom.cpp \
-    dialogabout.cpp
+    dialogabout.cpp \
+    historysaver.cpp
 
 HEADERS  += mainwindow.h \
     dialognickname.h \
@@ -31,7 +32,8 @@ HEADERS  += mainwindow.h \
     pmwindow.h \
     roomwindow.h \
     dialogroom.h \
-    dialogabout.h
+    dialogabout.h \
+    historysaver.hpp
 
 FORMS    += mainwindow.ui \
     dialognickname.ui \
