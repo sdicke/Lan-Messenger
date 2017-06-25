@@ -81,7 +81,7 @@ PMWindow* MainWindow::makePMWindow(QString title)
     }
     else
     {
-        PMWindow* newpm = new PMWindow();
+		PMWindow* newpm = new PMWindow(title);
         pms.insert(title, newpm);
         pmr.insert(newpm, title);
         connect(newpm, SIGNAL(enteredText(QString)), this, SLOT(onPMSend(QString)));
@@ -148,7 +148,7 @@ void MainWindow::onPMClosed()
 
 void MainWindow::onReceivedPM(QString from, QString text)
 {
-    makePMWindow(from)->receivedPM(text);
+	makePMWindow(from)->receivedPM(text);
 }
 
 void MainWindow::onReceivedRoom(QString room, QString from, QString text)

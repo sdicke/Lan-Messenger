@@ -23,7 +23,7 @@
 #include <QCloseEvent>
 
 namespace Ui {
-class PMWindow;
+	class PMWindow;
 }
 
 class PMWindow : public QMainWindow
@@ -31,11 +31,11 @@ class PMWindow : public QMainWindow
     Q_OBJECT
     
 public:
-    explicit PMWindow(QWidget *parent = 0);
+	explicit PMWindow(QString &partner, QWidget *parent = 0);
     ~PMWindow();
     
 private:
-    Ui::PMWindow *ui;
+	Ui::PMWindow *ui;
     void closeEvent (QCloseEvent * event) ;
 
 public slots:
@@ -44,6 +44,7 @@ public slots:
 signals:
     void enteredText(QString text);
     void closedWindow();
+	void setDefaultText(QString text);
 
 private slots:
     void on_btnSend_clicked();

@@ -18,12 +18,13 @@
 #include "pmwindow.h"
 #include "ui_pmwindow.h"
 
-PMWindow::PMWindow(QWidget *parent) :
+PMWindow::PMWindow(QString &partner, QWidget *parent) :
     QMainWindow(parent),
     ui(new Ui::PMWindow)
 {
     ui->setupUi(this);
     ui->txtInput->setFocus();
+	ui->txtChat->setText("<p>You chats now with <span style=\"color:blue; font-weight:bold;\">" +  partner + "</p>");
 }
 
 PMWindow::~PMWindow()
