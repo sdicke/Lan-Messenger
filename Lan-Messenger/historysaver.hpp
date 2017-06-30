@@ -6,7 +6,6 @@
 #include <QFile>
 #include <QStandardPaths>
 #include <QStringList>
-#include <QDebug>
 #include <QDir>
 #include <QByteArray>
 #include <QDateTime>

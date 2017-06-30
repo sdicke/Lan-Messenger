@@ -3,23 +3,21 @@
 HistorySaver::HistorySaver(QString partner) : QObject()
 {
 	QString homePath = QStandardPaths::standardLocations(QStandardPaths::HomeLocation).first();
-	this->file.setFileName(homePath + ".config/LanMessenger/history/" + partner);
+	this->file.setFileName(homePath + "/.config/LanMessenger/history/" + partner);
 	if (!this->file.open(QIODevice::ReadWrite)) {
 		emit loadFailed();
 	}
 	this->endpos = this->file.bytesAvailable();
 }
 
-#include <iostream>
-
 void HistorySaver::saveLine(QString line)
 {
-	QString abc = QDateTime::currentDateTime().toString();
+	QString abc = QDateTime::currentDateTime().toString() + " ";
 	this->file.seek(this->endpos);
+	line.prepend(abc.toUtf8());
 	line.append('\n');
-	line.prepend(' ');
 	QByteArray data = line.toUtf8();
-	if (!(this->file.write(abc.toUtf8()) && this->file.write(data))) {
+	if (!this->file.write(data)) {
 		emit saveFailed();
 	}
 	else {
@@ -46,3 +44,6 @@ void HistorySaver::loadBlock() {
 		emit hasBlock(data);
 	}
 }
+
+
+
