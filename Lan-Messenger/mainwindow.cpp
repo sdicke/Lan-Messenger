@@ -30,7 +30,12 @@ MainWindow::MainWindow(QWidget *parent) :
     connect(msgr, SIGNAL(roomListUpdated(QString,QString)), this, SLOT(onRoomListUpdated(QString,QString)));
     connect(msgr, SIGNAL(receivedPM(QString,QString)), this, SLOT(onReceivedPM(QString,QString)));
     connect(msgr, SIGNAL(receivedRoom(QString,QString,QString)), this, SLOT(onReceivedRoom(QString,QString,QString)));
-    dlgName->setModal(true);
+	connect(ui->actionAbout, SIGNAL(triggered(bool)), this, SLOT(onAbout()));
+	connect(ui->actionExit, SIGNAL(triggered(bool)), this, SLOT(onExit()));
+	connect(ui->actionJoin, SIGNAL(triggered(bool)), this, SLOT(onJoin()));
+	connect(ui->actionList, SIGNAL(triggered(bool)), this, SLOT(onList()));
+	connect(ui->actionOptions, SIGNAL(triggered(bool)), this, SLOT(onOptions()));
+	dlgName->setModal(true);
     dlgName->setWindowTitle("You Nickname, Please");
     dlgName->show();
 }
@@ -156,27 +161,40 @@ void MainWindow::onReceivedRoom(QString room, QString from, QString text)
     makeRoomWindow(room)->receivedPM(from, text);
 }
 
-void MainWindow::onMenu(QAction *action)
-{
-    if(action->text()=="Join")
-    {
-        DialogRoom* joinroom = new DialogRoom(this);
-        connect(joinroom, SIGNAL(joinRoom(QString)), this, SLOT(onJoinRoom(QString)));
-        joinroom->setModal(true);
-        joinroom->setWindowTitle("Room Name");
-        joinroom->show();
-    }
-    if(action->text()=="About")
-    {
-        DialogAbout* about = new DialogAbout(this);
-        about->setModal(true);
-        about->setWindowTitle("About 288 L.M.");
-        about->show();
-    }
-}
-
 void MainWindow::onJoinRoom(QString room)
 {
     makeRoomWindow(room)->setFocus();
     msgr->joinRoom(room);
+}
+
+void MainWindow::onOptions()
+{
+
+}
+
+void MainWindow::onAbout()
+{
+	DialogAbout* about = new DialogAbout(this);
+	about->setModal(true);
+	about->setWindowTitle("About 288 L.M.");
+	about->show();
+}
+
+void MainWindow::onList()
+{
+
+}
+
+void MainWindow::onJoin()
+{
+	DialogRoom* joinroom = new DialogRoom(this);
+	connect(joinroom, SIGNAL(joinRoom(QString)), this, SLOT(onJoinRoom(QString)));
+	joinroom->setModal(true);
+	joinroom->setWindowTitle("Room Name");
+	joinroom->show();
+}
+
+void MainWindow::onExit()
+{
+	QMainWindow::close();
 }

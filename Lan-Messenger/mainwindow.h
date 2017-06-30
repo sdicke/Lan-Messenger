@@ -54,7 +54,11 @@ private slots:
     void onReceivedPM(QString from, QString text);
     void onReceivedRoom(QString room, QString from, QString text);
     void onJoinRoom(QString room);
-    void onMenu(QAction* action);
+	void onOptions();
+	void onAbout();
+	void onList();
+	void onJoin();
+	void onExit();
 
 private:
     Ui::MainWindow *ui;
@@ -65,6 +69,7 @@ private:
     QMap<RoomWindow*, QString> rmr;
     PMWindow* makePMWindow(QString title);
     RoomWindow* makeRoomWindow(QString title);
+
 };
 
 #endif // MAINWINDOW_H
