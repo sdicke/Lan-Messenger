@@ -21,6 +21,7 @@
 #include <QMainWindow>
 #include <QDebug>
 #include <QCloseEvent>
+#include "historysaver.hpp"
 
 namespace Ui {
 	class PMWindow;
@@ -35,6 +36,7 @@ public:
     ~PMWindow();
     
 private:
+	HistorySaver *saver;
 	Ui::PMWindow *ui;
     void closeEvent (QCloseEvent * event) ;
 

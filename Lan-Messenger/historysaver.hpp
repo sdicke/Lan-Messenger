@@ -9,6 +9,9 @@
 #include <QDebug>
 #include <QDir>
 #include <QByteArray>
+#include <QDateTime>
+
+#include <iostream>
 
 class HistorySaver : public QObject
 {
@@ -17,7 +20,7 @@ class HistorySaver : public QObject
 
 	public:
 		HistorySaver(QString partner);
-		~HistorySaver();
+
 
 	private:
 		qint64 endpos;

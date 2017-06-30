@@ -10,19 +10,20 @@ HistorySaver::HistorySaver(QString partner) : QObject()
 	this->endpos = this->file.bytesAvailable();
 }
 
-HistorySaver::~HistorySaver() {
-	this->file.close();
-}
+#include <iostream>
 
 void HistorySaver::saveLine(QString line)
 {
+	QString abc = QDateTime::currentDateTime().toString();
 	this->file.seek(this->endpos);
+	line.append('\n');
+	line.prepend(' ');
 	QByteArray data = line.toUtf8();
-	if (!this->file.write(data)) {
+	if (!(this->file.write(abc.toUtf8()) && this->file.write(data))) {
 		emit saveFailed();
 	}
 	else {
-		this->endpos += data.size();
+		this->endpos += data.size() + abc.size();
 	}
 }
 

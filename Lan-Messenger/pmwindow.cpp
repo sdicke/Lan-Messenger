@@ -20,16 +20,18 @@
 
 PMWindow::PMWindow(QString &partner, QWidget *parent) :
     QMainWindow(parent),
-    ui(new Ui::PMWindow)
+	ui(new Ui::PMWindow)
 {
     ui->setupUi(this);
     ui->txtInput->setFocus();
 	ui->txtChat->setText("<p>You chats now with <span style=\"color:blue; font-weight:bold;\">" +  partner + "</p>");
+	this->saver = new HistorySaver(partner);
 }
 
 PMWindow::~PMWindow()
 {
-    delete ui;
+	delete saver;
+	delete ui;
 }
 
 void PMWindow::on_btnSend_clicked()
@@ -38,16 +40,20 @@ void PMWindow::on_btnSend_clicked()
 	if (!message.isEmpty())
 	{
 		emit enteredText(message);
-		ui->txtChat->append("Me: " + ui->txtInput->text());
+		QString string("Me: " + ui->txtInput->text());
+		ui->txtChat->append(string);
 		ui->txtInput->clear();
 		ui->txtInput->setFocus();
+		this->saver->saveLine(string);
 	}
 	ui->txtInput->setFocus();
 }
 
 void PMWindow::receivedPM(QString text)
 {
-    ui->txtChat->append(this->windowTitle() + " : " + text);
+	QString string(this->windowTitle() + " : " + text);
+	ui->txtChat->append(string);
+	this->saver->saveLine(string);
 }
 
 void PMWindow::on_txtInput_returnPressed()
