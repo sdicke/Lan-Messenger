@@ -44,14 +44,12 @@ class HistorySaver : public QObject
 
 	signals:
 		void saveFailed();
-		void lineLoaded();
 		void loadFailed();
 		void hasLine(QByteArray line);
 		void hasBlock(QByteArray block);
 
 	public slots:
 		void saveLine(QString line);
-		void loadLine();
 		void loadBlock();
 
 };
