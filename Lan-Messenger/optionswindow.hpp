@@ -2,6 +2,7 @@
 #define OPTIONSWINDOW_HPP
 
 #include <QWidget>
+#include <QString>
 
 namespace Ui {
 	class OptionsWindow;
@@ -15,7 +16,12 @@ class OptionsWindow : public QWidget
 		explicit OptionsWindow(QWidget *parent = 0);
 		~OptionsWindow();
 
-	private:
+	signals:
+		void nameSet(QString name);
+
+	private slots:
+		void onNameChanged(QString);
+
 		Ui::OptionsWindow *ui;
 };
 
