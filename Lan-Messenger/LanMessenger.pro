@@ -13,6 +13,9 @@ TEMPLATE = app
 
 CONFIG += release
 QMAKE_CXXFLAGS += -std=c++14
+DESTDIR += ../build/LanMessenger
+
+#unix|win32: LIBS += -lgcrypt
 
 SOURCES += main.cpp\
         mainwindow.cpp \
@@ -23,7 +26,9 @@ SOURCES += main.cpp\
     roomwindow.cpp \
     dialogroom.cpp \
     dialogabout.cpp \
-    historysaver.cpp
+    historysaver.cpp \
+    optionswindow.cpp \
+    options.cpp
 
 HEADERS  += mainwindow.h \
     dialognickname.h \
@@ -33,11 +38,14 @@ HEADERS  += mainwindow.h \
     roomwindow.h \
     dialogroom.h \
     dialogabout.h \
-    historysaver.hpp
+    historysaver.hpp \
+    optionswindow.hpp \
+    options.hpp
 
 FORMS    += mainwindow.ui \
     dialognickname.ui \
     pmwindow.ui \
     roomwindow.ui \
     dialogroom.ui \
-    dialogabout.ui
+    dialogabout.ui \
+    optionswindow.ui
