@@ -25,8 +25,9 @@ MainWindow::MainWindow(QWidget *parent) :
     ui->setupUi(this);
     msgr = new Messenger(this);
     DialogNickName *dlgName = new DialogNickName(this);
-    connect(dlgName, SIGNAL(setName(QString)), this, SLOT(onSetName(QString)));
-    connect(msgr, SIGNAL(peersUpdated()), this , SLOT(onUpdateList()));
+	connect(dlgName, SIGNAL(setName(QString)), &this->options, SLOT(onSetName(QString)));
+	connect(&this->options, SIGNAL(nameChanged(QString)), this, SLOT(onSetName(QString)) );
+	connect(msgr, SIGNAL(peersUpdated()), this , SLOT(onUpdateList()));
     connect(msgr, SIGNAL(roomListUpdated(QString,QString)), this, SLOT(onRoomListUpdated(QString,QString)));
     connect(msgr, SIGNAL(receivedPM(QString,QString)), this, SLOT(onReceivedPM(QString,QString)));
     connect(msgr, SIGNAL(receivedRoom(QString,QString,QString)), this, SLOT(onReceivedRoom(QString,QString,QString)));
@@ -91,7 +92,8 @@ PMWindow* MainWindow::makePMWindow(QString title)
         pmr.insert(newpm, title);
         connect(newpm, SIGNAL(enteredText(QString)), this, SLOT(onPMSend(QString)));
         connect(newpm, SIGNAL(closedWindow()), this, SLOT(onPMClosed()));
-        newpm->setWindowTitle(title);
+		connect(&this->options, SIGNAL(nameChanged(QString)), newpm, SLOT(IDchanged(QString)));
+		newpm->setWindowTitle(title);
         newpm->show();
         return newpm;
     }
@@ -169,7 +171,10 @@ void MainWindow::onJoinRoom(QString room)
 
 void MainWindow::onOptions()
 {
-
+	OptionsWindow* options = new OptionsWindow();
+	connect(options, SIGNAL(nameSet(QString)), &this->options, SLOT(onSetName(QString)));
+	options->setWindowTitle("288 LanMessenger - Options");
+	options->show();
 }
 
 void MainWindow::onAbout()

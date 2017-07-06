@@ -42,6 +42,7 @@ private:
 
 public slots:
     void receivedPM(QString text);
+	void IDchanged(QString name);
 
 signals:
     void enteredText(QString text);

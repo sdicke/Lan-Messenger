@@ -68,3 +68,8 @@ void PMWindow::closeEvent(QCloseEvent *event)
     event->accept();
     this->deleteLater();
 }
+
+void PMWindow::IDchanged(QString name)
+{
+	std::cout << name.toStdString() << std::endl;
+}

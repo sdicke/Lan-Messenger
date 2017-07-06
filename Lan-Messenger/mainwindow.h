@@ -28,6 +28,8 @@
 #include "roomwindow.h"
 #include "dialogroom.h"
 #include "dialogabout.h"
+#include "options.hpp"
+#include "optionswindow.hpp"
 
 namespace Ui {
 class MainWindow;
@@ -63,6 +65,7 @@ private slots:
 private:
     Ui::MainWindow *ui;
     Messenger* msgr;
+	Options options;
     QMap<QString, PMWindow*> pms;
     QMap<PMWindow*, QString> pmr;
     QMap<QString, RoomWindow*> rms;
