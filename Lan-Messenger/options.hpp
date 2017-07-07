@@ -4,6 +4,12 @@
 #include <QObject>
 #include <QString>
 
+/*
+ *
+ * Provides an interface for other classes to load, save and update settings
+ *
+ */
+
 class Options : public QObject
 {
 		Q_OBJECT
