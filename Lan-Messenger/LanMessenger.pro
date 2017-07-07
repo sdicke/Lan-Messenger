@@ -15,7 +15,7 @@ CONFIG += release
 QMAKE_CXXFLAGS += -std=c++14
 DESTDIR += ../build/LanMessenger
 
-#unix|win32: LIBS += -lgcrypt
+unix|win32: LIBS += -lgcrypt
 
 SOURCES += main.cpp\
         mainwindow.cpp \
