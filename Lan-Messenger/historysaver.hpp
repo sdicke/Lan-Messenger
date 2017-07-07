@@ -18,7 +18,6 @@
 #ifndef HISTORYSAVER_HPP
 #define HISTORYSAVER_HPP
 
-#include <cstdint>
 #include <QObject>
 #include <QFile>
 #include <QStandardPaths>
@@ -28,6 +27,13 @@
 #include <QDateTime>
 
 #include <iostream>
+
+/*
+ *
+ * Providing a interface to read saved chats from a file and to save new chat
+ * messages successive in a file
+ *
+ */
 
 class HistorySaver : public QObject
 {
@@ -45,8 +51,7 @@ class HistorySaver : public QObject
 	signals:
 		void saveFailed();
 		void loadFailed();
-		void hasLine(QByteArray line);
-		void hasBlock(QByteArray block);
+        void hasBlock(QByteArray block);
 
 	public slots:
 		void saveLine(QString line);
