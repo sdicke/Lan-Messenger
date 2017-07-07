@@ -7,12 +7,12 @@ OptionsWindow::OptionsWindow(QWidget *parent) :
 {
 	ui->setupUi(this);
 	ui->leID->setText("");
+	connect(this->ui->leID, SIGNAL(returnPressed()), this, SLOT(onNameChanged(QString)));
 }
 
 OptionsWindow::~OptionsWindow()
 {
 	delete ui;
-	connect(this->ui->leID, SIGNAL(returnPressed()), this, SLOT(onNameChanged(QString)));
 }
 
 void OptionsWindow::onNameChanged(QString name)
