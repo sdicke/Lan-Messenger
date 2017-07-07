@@ -22,6 +22,8 @@ class OptionsWindow : public QWidget
 	private slots:
 		void onNameChanged(QString);
 
+    private:
+
 		Ui::OptionsWindow *ui;
 };
 
