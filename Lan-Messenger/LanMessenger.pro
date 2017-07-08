@@ -40,7 +40,8 @@ HEADERS  += mainwindow.h \
     dialogabout.h \
     historysaver.hpp \
     optionswindow.hpp \
-    options.hpp
+    options.hpp \
+    messenges.hpp
 
 FORMS    += mainwindow.ui \
     dialognickname.ui \
