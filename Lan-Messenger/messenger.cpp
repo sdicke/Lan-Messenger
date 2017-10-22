@@ -111,7 +111,6 @@ void Messenger::log(QString data, QString dest, bool isSent)
     msg += dest + fill + "  Data: ";
     msg += data;
     qDebug() << msg.toStdString().c_str();
-    return;
 }
 
 void Messenger::logSent(QString data, QHostAddress dest)

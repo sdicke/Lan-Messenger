@@ -71,8 +71,7 @@ void MainWindow::onRoomListUpdated(QString room, QString msg)
     makeRoomWindow(room)->receivedPM("", msg);
 }
 
-
-void MainWindow::on_listUsers_doubleClicked(const QModelIndex &index)
+void MainWindow::on_listUsers_doubleClicked(const QModelIndex &index __attribute__((unused)))
 {
     QString userid = ui->listUsers->currentItem()->text();
     makePMWindow(userid);

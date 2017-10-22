@@ -65,7 +65,7 @@ void RoomWindow::updateList(QList<QString> list)
 }
 
 
-void RoomWindow::on_listUsers_doubleClicked(const QModelIndex &index)
+void RoomWindow::on_listUsers_doubleClicked(const QModelIndex &index __attribute__((unused)))
 {
     QString userid = ui->listUsers->currentItem()->text();
     emit startPM(userid);
