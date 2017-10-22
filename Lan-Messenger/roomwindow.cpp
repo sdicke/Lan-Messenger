@@ -61,7 +61,9 @@ void RoomWindow::updateList(QList<QString> list)
 {
     ui->listUsers->clear();
     for(int i=0; i<list.count(); i++)
+    {
         ui->listUsers->addItem(list[i]);
+    }
 }
 
 

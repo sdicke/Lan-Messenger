@@ -58,7 +58,9 @@ void MainWindow::onUpdateList()
     ui->listUsers->clear();
     QList<Peer>& peers = msgr->getPeers();
     for(int i=0; i<peers.count(); i++)
+    {
         ui->listUsers->addItem(peers[i].ID());
+    }
 }
 
 void MainWindow::onRoomListUpdated(QString room, QString msg)
@@ -66,7 +68,9 @@ void MainWindow::onRoomListUpdated(QString room, QString msg)
     QList<QString> ids;
     QList<Peer>& peers = msgr->getRoomPeers(room);
     for(int i=0; i<peers.count(); i++)
+    {
         ids.append(peers[i].ID());
+    }
     makeRoomWindow(room)->updateList(ids);
     makeRoomWindow(room)->receivedPM("", msg);
 }

@@ -65,14 +65,19 @@ void Messenger::onTimerdiscovery()
     for(int i=0; i<_rooms.count(); i++)
     {
         QString room = _rooms[i];
-        if(!_roomslist.contains(room)) continue;
+        if(!_roomslist.contains(room))
+        {
+            continue;
+        }
         for(int j=0; j<_roomslist[room].count(); j++)
+        {
             if(_roomslist[room].at(j).Lastseen.secsTo(QTime::currentTime()) > 10)
             {
                 QString name = _roomslist[room][j].ID();
                 _roomslist[room].removeAt(j);
                 emit roomListUpdated(room, "*** " + name + " Left. ***");
             }
+        }
     }
 }
 
@@ -89,8 +94,12 @@ void Messenger::onReadyRead()
 
         bool flag = true;
         for(int i=0; i < _myips.count(); ++i)
+        {
             if(sender.toString() == _myips[i].toString())
+            {
                 flag = false;
+            }
+        }
 
         if (flag)
         {
@@ -183,13 +192,23 @@ void Messenger::processTheDatagram(QByteArray data, QHostAddress sender)
     if(packet[2] == "ROOMLIST")
     {
         QString room = packet[3];
-        if(!_rooms.contains(room)) return;
+        if(!_rooms.contains(room))
+        {
+            return;
+        }
         if(!_roomslist.contains(room))
+        {
             _roomslist.insert(room, PeerList());
+        }
 
         int found = -1;
         for(int i=0; i<_roomslist[room].count(); i++)
-            if(_roomslist[room][i].ID() == packet[4]) found = i;
+        {
+            if(_roomslist[room][i].ID() == packet[4])
+            {
+                found = i;
+            }
+        }
 
         if(found == -1)
         {
@@ -220,7 +239,9 @@ void Messenger::processTheDatagram(QByteArray data, QHostAddress sender)
         QString from = packet[3];
         QString text = packet[4];
         for(int i=5; i<packet.count(); i++)
+        {
             text += ":" + packet[i];
+        }
         emit receivedPM(from, text);
     }
     if(packet[2] == "ROOM")
@@ -229,14 +250,22 @@ void Messenger::processTheDatagram(QByteArray data, QHostAddress sender)
         QString from = packet[4];
         QString text = packet[5];
         for(int i=6; i<packet.count(); i++)
+        {
             text += ":" + packet[i];
-
+        }
         bool found=false;
         for(int i=0;i<_rooms.count(); i++)
-            if(_rooms[i] == room) found = true;
+        {
+            if(_rooms[i] == room)
+            {
+                found = true;
+            }
+        }
 
         if(found)
+        {
             emit receivedRoom(room, from, text);
+        }
     }
 }
 
@@ -246,7 +275,9 @@ void Messenger::sendPM(QString text, QString to)
     for(int i=0; i<_peers.count(); i++)
     {
         if(_peers[i].ID() == to)
+        {
             adr = _peers[i].Host;
+        }
     }
     QString packet = PCK_HEADER "PM:" + _mypeer.ID() + ":" + text;
     logSent(packet, adr);
