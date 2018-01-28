@@ -29,11 +29,11 @@ PMWindow::PMWindow(QString &partner, QWidget *parent) :
 //	connect(this, SIGNAL(foc))
 }
 
-//PMWindow::~PMWindow()
-//{
-//	delete saver;
-//	delete ui;
-//}
+PMWindow::~PMWindow()
+{
+	delete saver;
+	delete ui;
+}
 
 void PMWindow::focusInEvent(QFocusEvent* event) {
 	event->accept();
@@ -72,8 +72,8 @@ void PMWindow::on_txtInput_returnPressed()
 
 void PMWindow::closeEvent(QCloseEvent *event)
 {
-	emit closedWindow();
 	event->accept();
+	emit closedWindow();
 	this->deleteLater();
 }
 
