@@ -34,9 +34,10 @@ class PMWindow : public QMainWindow
 
 	public:
 		explicit PMWindow(QString &partner, QWidget *parent = nullptr);
+		~PMWindow();
 
 	protected:
-		void focusInEvent(QFocusEvent* e);
+		void focusInEvent(QFocusEvent* event);
 
 	private:
 		HistorySaver *saver;
