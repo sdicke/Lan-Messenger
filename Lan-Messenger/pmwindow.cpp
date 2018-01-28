@@ -19,11 +19,11 @@
 #include "ui_pmwindow.h"
 
 PMWindow::PMWindow(QString &partner, QWidget *parent) :
-    QMainWindow(parent),
+	QMainWindow(parent),
 	ui(new Ui::PMWindow)
 {
-    ui->setupUi(this);
-    ui->txtInput->setFocus();
+	ui->setupUi(this);
+	ui->txtInput->setFocus();
 	ui->txtChat->setText("<p>You chats now with <span style=\"color:blue; font-weight:bold;\">" +  partner + "</p>");
 	//this->saver = new HistorySaver(partner);
 //	connect(this, SIGNAL(foc))
@@ -64,14 +64,14 @@ void PMWindow::receivedPM(QString text)
 
 void PMWindow::on_txtInput_returnPressed()
 {
-    on_btnSend_clicked();
+	on_btnSend_clicked();
 }
 
 void PMWindow::closeEvent(QCloseEvent *event)
 {
-    emit closedWindow();
-    event->accept();
-    this->deleteLater();
+	emit closedWindow();
+	event->accept();
+	this->deleteLater();
 }
 
 void PMWindow::IDchanged(QString name)

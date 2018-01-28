@@ -4,7 +4,7 @@
 #
 #-------------------------------------------------
 
-QT       += core gui network
+QT	   += core gui network
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
@@ -16,41 +16,41 @@ QMAKE_CXXFLAGS += -std=c++14
 DESTDIR += ../build/LanMessenger
 
 SUBDIRS += \
-    LanMessenger.pro
+	LanMessenger.pro
 
 FORMS += \
-    dialogabout.ui \
-    dialognickname.ui \
-    dialogroom.ui \
-    mainwindow.ui \
-    optionswindow.ui \
-    pmwindow.ui \
-    roomwindow.ui
+	dialogabout.ui \
+	dialognickname.ui \
+	dialogroom.ui \
+	mainwindow.ui \
+	optionswindow.ui \
+	pmwindow.ui \
+	roomwindow.ui
 
 HEADERS += \
-    dialogabout.h \
-    dialognickname.h \
-    dialogroom.h \
-    historysaver.hpp \
-    mainwindow.h \
-    messenger.h \
-    options.hpp \
-    optionswindow.hpp \
-    peer.h \
-    pmwindow.h \
-    roomwindow.h
+	dialogabout.h \
+	dialognickname.h \
+	dialogroom.h \
+	historysaver.hpp \
+	mainwindow.h \
+	messenger.h \
+	options.hpp \
+	optionswindow.hpp \
+	peer.h \
+	pmwindow.h \
+	roomwindow.h
 
 SOURCES += \
-    dialogabout.cpp \
-    dialognickname.cpp \
-    dialogroom.cpp \
-    historysaver.cpp \
-    main.cpp \
-    mainwindow.cpp \
-    messenger.cpp \
-    options.cpp \
-    optionswindow.cpp \
-    peer.cpp \
-    pmwindow.cpp \
-    roomwindow.cpp
+	dialogabout.cpp \
+	dialognickname.cpp \
+	dialogroom.cpp \
+	historysaver.cpp \
+	main.cpp \
+	mainwindow.cpp \
+	messenger.cpp \
+	options.cpp \
+	optionswindow.cpp \
+	peer.cpp \
+	pmwindow.cpp \
+	roomwindow.cpp
 

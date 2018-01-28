@@ -24,13 +24,13 @@
 class Peer
 {
 public:
-    explicit Peer();
-    QString Name;
-    QString Domain;
-    QHostAddress Host;
-    QTime Lastseen;
-    QString ID();
-    
+	explicit Peer();
+	QString Name;
+	QString Domain;
+	QHostAddress Host;
+	QTime Lastseen;
+	QString ID();
+
 };
 
 #endif // PEER_H

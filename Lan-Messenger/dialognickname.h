@@ -27,20 +27,20 @@ namespace Ui {
 
 class DialogNickName : public QDialog
 {
-    Q_OBJECT
-    
+	Q_OBJECT
+
 public:
 	explicit DialogNickName(QWidget *parent = nullptr);
-    ~DialogNickName();
-    
+	~DialogNickName();
+
 private slots:
-    void on_btnOk_clicked();
+	void on_btnOk_clicked();
 
 signals:
-    void setName(QString name);
+	void setName(QString name);
 
 private:
-    Ui::DialogNickName *ui;
+	Ui::DialogNickName *ui;
 };
 
 #endif // DIALOGNICKNAME_H

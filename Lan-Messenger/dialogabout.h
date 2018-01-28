@@ -26,14 +26,14 @@ namespace Ui {
 
 class DialogAbout : public QDialog
 {
-    Q_OBJECT
-    
+	Q_OBJECT
+	
 public:
-    explicit DialogAbout(QWidget *parent = nullptr);
-    ~DialogAbout();
-    
+	explicit DialogAbout(QWidget *parent = nullptr);
+	~DialogAbout();
+	
 private:
-    Ui::DialogAbout *ui;
+	Ui::DialogAbout *ui;
 };
 
 #endif // DIALOGABOUT_H

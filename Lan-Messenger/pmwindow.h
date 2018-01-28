@@ -30,8 +30,8 @@ namespace Ui {
 
 class PMWindow : public QMainWindow
 {
-    Q_OBJECT
-    
+	Q_OBJECT
+
 	public:
 		explicit PMWindow(QString &partner, QWidget *parent = nullptr);
 

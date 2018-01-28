@@ -26,19 +26,19 @@ namespace Ui {
 
 class DialogRoom : public QDialog
 {
-    Q_OBJECT
-    
+	Q_OBJECT
+
 public:
 	explicit DialogRoom(QWidget *parent = nullptr);
-    ~DialogRoom();
-    
+	~DialogRoom();
+
 private:
-    Ui::DialogRoom *ui;
+	Ui::DialogRoom *ui;
 
 signals:
-    void joinRoom(QString room);
+	void joinRoom(QString room);
 private slots:
-    void on_btnJoin_clicked();
+	void on_btnJoin_clicked();
 };
 
 #endif // DIALOGROOM_H

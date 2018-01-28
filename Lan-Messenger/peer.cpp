@@ -23,5 +23,5 @@ Peer::Peer()
 
 QString Peer::ID()
 {
-    return Name + "@" + Domain;
+	return Name + "@" + Domain;
 }

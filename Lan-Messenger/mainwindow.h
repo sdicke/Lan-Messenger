@@ -37,25 +37,25 @@ namespace Ui {
 
 class MainWindow : public QMainWindow
 {
-    Q_OBJECT
-    
+	Q_OBJECT
+
 public:
 	explicit MainWindow(QWidget *parent = nullptr);
-    ~MainWindow();
+	~MainWindow();
 
 private slots:
-    void onSetName(QString name);
-    void onUpdateList();
-    void onRoomListUpdated(QString room, QString msg);
-    void onPMSend(QString text);
-    void onPMClosed();
-    void onRoomSend(QString text);
-    void onRoomClosed();
-    void onRoomPM(QString id);
-    void on_listUsers_doubleClicked(const QModelIndex &index);
-    void onReceivedPM(QString from, QString text);
-    void onReceivedRoom(QString room, QString from, QString text);
-    void onJoinRoom(QString room);
+	void onSetName(QString name);
+	void onUpdateList();
+	void onRoomListUpdated(QString room, QString msg);
+	void onPMSend(QString text);
+	void onPMClosed();
+	void onRoomSend(QString text);
+	void onRoomClosed();
+	void onRoomPM(QString id);
+	void on_listUsers_doubleClicked(const QModelIndex &index);
+	void onReceivedPM(QString from, QString text);
+	void onReceivedRoom(QString room, QString from, QString text);
+	void onJoinRoom(QString room);
 	void onOptions();
 	void onAbout();
 	void onList();
@@ -63,15 +63,15 @@ private slots:
 	void onExit();
 
 private:
-    Ui::MainWindow *ui;
-    Messenger* msgr;
+	Ui::MainWindow *ui;
+	Messenger* msgr;
 	Options options;
-    QMap<QString, PMWindow*> pms;
-    QMap<PMWindow*, QString> pmr;
-    QMap<QString, RoomWindow*> rms;
-    QMap<RoomWindow*, QString> rmr;
-    PMWindow* makePMWindow(QString title);
-    RoomWindow* makeRoomWindow(QString title);
+	QMap<QString, PMWindow*> pms;
+	QMap<PMWindow*, QString> pmr;
+	QMap<QString, RoomWindow*> rms;
+	QMap<RoomWindow*, QString> rmr;
+	PMWindow* makePMWindow(QString title);
+	RoomWindow* makeRoomWindow(QString title);
 
 };
 

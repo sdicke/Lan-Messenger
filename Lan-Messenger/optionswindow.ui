@@ -4,10 +4,10 @@
  <widget class="QWidget" name="OptionsWindow">
   <property name="geometry">
    <rect>
-    <x>0</x>
-    <y>0</y>
-    <width>600</width>
-    <height>600</height>
+	<x>0</x>
+	<y>0</y>
+	<width>600</width>
+	<height>600</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -15,73 +15,73 @@
   </property>
   <widget class="QLabel" name="lblSetName">
    <property name="geometry">
-    <rect>
-     <x>40</x>
-     <y>30</y>
-     <width>91</width>
-     <height>18</height>
-    </rect>
+	<rect>
+	 <x>40</x>
+	 <y>30</y>
+	 <width>91</width>
+	 <height>18</height>
+	</rect>
    </property>
    <property name="text">
-    <string>Choice your ID:</string>
+	<string>Choice your ID:</string>
    </property>
   </widget>
   <widget class="QLineEdit" name="leID">
    <property name="geometry">
-    <rect>
-     <x>150</x>
-     <y>20</y>
-     <width>411</width>
-     <height>32</height>
-    </rect>
+	<rect>
+	 <x>150</x>
+	 <y>20</y>
+	 <width>411</width>
+	 <height>32</height>
+	</rect>
    </property>
    <property name="locale">
-    <locale language="English" country="UnitedStates"/>
+	<locale language="English" country="UnitedStates"/>
    </property>
    <property name="dragEnabled">
-    <bool>false</bool>
+	<bool>false</bool>
    </property>
   </widget>
   <widget class="QLabel" name="lblChecksums">
    <property name="geometry">
-    <rect>
-     <x>40</x>
-     <y>100</y>
-     <width>271</width>
-     <height>18</height>
-    </rect>
+	<rect>
+	 <x>40</x>
+	 <y>100</y>
+	 <width>271</width>
+	 <height>18</height>
+	</rect>
    </property>
    <property name="text">
-    <string>Use checksums to ensure message integrity</string>
+	<string>Use checksums to ensure message integrity</string>
    </property>
   </widget>
   <widget class="QRadioButton" name="rbYes">
    <property name="geometry">
-    <rect>
-     <x>330</x>
-     <y>100</y>
-     <width>104</width>
-     <height>22</height>
-    </rect>
+	<rect>
+	 <x>330</x>
+	 <y>100</y>
+	 <width>104</width>
+	 <height>22</height>
+	</rect>
    </property>
    <property name="text">
-    <string>&amp;yes</string>
+	<string>&amp;yes</string>
    </property>
    <property name="checked">
-    <bool>true</bool>
+	<bool>true</bool>
    </property>
   </widget>
   <widget class="QRadioButton" name="rbNo">
    <property name="geometry">
-    <rect>
-     <x>400</x>
-     <y>100</y>
-     <width>104</width>
-     <height>22</height>
-    </rect>
+	<rect>
+	 <x>400</x>
+	 <y>100</y>
+	 <width>104</width>
+	 <height>22</height>
+	</rect>
    </property>
    <property name="text">
-    <string>no</string>
+	<string>no</string>
    </property>
   </widget>
  </widget>

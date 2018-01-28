@@ -19,15 +19,15 @@
 #include "ui_dialognickname.h"
 
 DialogNickName::DialogNickName(QWidget *parent) :
-    QDialog(parent),
-    ui(new Ui::DialogNickName)
+	QDialog(parent),
+	ui(new Ui::DialogNickName)
 {
-    ui->setupUi(this);
+	ui->setupUi(this);
 }
 
 DialogNickName::~DialogNickName()
 {
-    delete ui;
+	delete ui;
 }
 
 void DialogNickName::on_btnOk_clicked()
@@ -38,5 +38,5 @@ void DialogNickName::on_btnOk_clicked()
 		name = "anonymous";
 	}
 	emit setName(name);
-    this->deleteLater();
+	this->deleteLater();
 }
