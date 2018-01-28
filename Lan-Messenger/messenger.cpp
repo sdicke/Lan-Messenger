@@ -109,27 +109,27 @@ void Messenger::onReadyRead()
     }
 }
 
-void Messenger::log(QString data, QString dest, bool isSent)
+void Messenger::log(QString data, QString destination, bool isSent)
 {
-    QString msg;
-    msg += isSent? "Sent     ":"Received ";
-    msg += QString::number(data.length()) + " bytes";
-    msg += isSent? " to   ":" from ";
+	QString messege;
+	messege += isSent? "Sent     ":"Received ";
+	messege += QString::number(data.length()) + " bytes";
+	messege += isSent? " to   ":" from ";
     QString fill;
-    fill.fill(' ', 15 - dest.size());
-    msg += dest + fill + "  Data: ";
-    msg += data;
-    qDebug() << msg.toStdString().c_str();
+	fill.fill(' ', 15 - destination.size());
+	messege += destination + fill + "  Data: ";
+	messege += data;
+	qDebug() << messege.toStdString().c_str();
 }
 
 void Messenger::logSent(QString data, QHostAddress dest)
 {
-    return log(data, dest.toString(), true);
+	log(data, dest.toString(), true);
 }
 
 void Messenger::logReceived(QString data, QHostAddress dest)
 {
-    return log(data, dest.toString(), false);
+	log(data, dest.toString(), false);
 }
 
 PeerList& Messenger::getPeers()
@@ -271,17 +271,17 @@ void Messenger::processTheDatagram(QByteArray data, QHostAddress sender)
 
 void Messenger::sendPM(QString text, QString to)
 {
-    QHostAddress adr;
+	QHostAddress address;
     for(int i=0; i<_peers.count(); i++)
     {
         if(_peers[i].ID() == to)
         {
-            adr = _peers[i].Host;
+			address = _peers[i].Host;
         }
     }
     QString packet = PCK_HEADER "PM:" + _mypeer.ID() + ":" + text;
-    logSent(packet, adr);
-    _udp.writeDatagram(packet.toUtf8(), adr, 2880);
+	logSent(packet, address);
+	_udp.writeDatagram(packet.toUtf8(), address, 2880);
 }
 
 void Messenger::sendRoom(QString text, QString room)
