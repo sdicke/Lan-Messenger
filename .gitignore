@@ -11,4 +11,15 @@
 *.la
 *.a
 
-*.pro.user
+# Build directory
+build/*
+
+# Local files from Qt Creator
+*.pro.user*
+
+# Local backup files
+*.~
+*.swp
+
+# Local KDE files
+*.directory
