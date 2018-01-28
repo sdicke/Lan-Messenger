@@ -15,38 +15,42 @@ CONFIG += release
 QMAKE_CXXFLAGS += -std=c++14
 DESTDIR += ../build/LanMessenger
 
-unix|win32: LIBS += -lgcrypt
+SUBDIRS += \
+    LanMessenger.pro
 
-SOURCES += main.cpp\
-        mainwindow.cpp \
-    dialognickname.cpp \
-    messenger.cpp \
-    peer.cpp \
-    pmwindow.cpp \
-    roomwindow.cpp \
-    dialogroom.cpp \
-    dialogabout.cpp \
-    historysaver.cpp \
-    optionswindow.cpp \
-    options.cpp
+FORMS += \
+    dialogabout.ui \
+    dialognickname.ui \
+    dialogroom.ui \
+    mainwindow.ui \
+    optionswindow.ui \
+    pmwindow.ui \
+    roomwindow.ui
 
-HEADERS  += mainwindow.h \
+HEADERS += \
+    dialogabout.h \
     dialognickname.h \
+    dialogroom.h \
+    historysaver.hpp \
+    mainwindow.h \
     messenger.h \
+    options.hpp \
+    optionswindow.hpp \
     peer.h \
     pmwindow.h \
-    roomwindow.h \
-    dialogroom.h \
-    dialogabout.h \
-    historysaver.hpp \
-    optionswindow.hpp \
-    options.hpp \
-    messenges.hpp
+    roomwindow.h
 
-FORMS    += mainwindow.ui \
-    dialognickname.ui \
-    pmwindow.ui \
-    roomwindow.ui \
-    dialogroom.ui \
-    dialogabout.ui \
-    optionswindow.ui
+SOURCES += \
+    dialogabout.cpp \
+    dialognickname.cpp \
+    dialogroom.cpp \
+    historysaver.cpp \
+    main.cpp \
+    mainwindow.cpp \
+    messenger.cpp \
+    options.cpp \
+    optionswindow.cpp \
+    peer.cpp \
+    pmwindow.cpp \
+    roomwindow.cpp
+
