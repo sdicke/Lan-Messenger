@@ -24,7 +24,7 @@ PMWindow::PMWindow(QString &partner, QWidget *parent) :
 {
 	ui->setupUi(this);
 	ui->txtInput->setFocus();
-	ui->txtChat->setText("<p>You chats now with <span style=\"color:blue; font-weight:bold;\">" +  partner + "</p>");
+	ui->txtChat->setText("<p>You chats now with <span style=\"color: blue; font-weight: bold;\">" +  partner + "</p>");
 	//this->saver = new HistorySaver(partner);
 //	connect(this, SIGNAL(foc))
 }
