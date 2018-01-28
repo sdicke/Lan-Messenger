@@ -20,27 +20,29 @@
 HistorySaver::HistorySaver(QString partner) : QObject()
 {
 	QString homePath = QStandardPaths::standardLocations(QStandardPaths::HomeLocation).first();
-	this->file.setFileName(homePath + "/.config/LanMessenger/history/" + partner);
-	if (!this->file.open(QIODevice::ReadWrite)) {
-		emit loadFailed();
+	QString targetpath = homePath + "/.cache/LanMessenger/history/";
+	QString path = targetpath + partner;
+	this->file.setFileName(path);
+	QDir wpath = QDir(targetpath);
+	if (!wpath.exists()) {
+		wpath.mkpath(targetpath);
 	}
-	this->endpos = this->file.bytesAvailable();
+	if (!this->file.exists()) {
+		this->file.open(QIODevice::WriteOnly | QIODevice::Text);
+		QTextStream stream(&file);
+		stream << "";
+	}
+	if (!this->file.open(QIODevice::Append)) {
+		std::cout << "Cannot open " << path.toStdString() << std::endl;
+	}
 }
 
 void HistorySaver::saveLine(QString line)
 {
-	QString abc = QDateTime::currentDateTime().toString() + " ";
-	this->file.seek(this->endpos);
+	QString abc = QDateTime::currentDateTime().toString();
 	line.prepend(abc.toUtf8());
-	line.append('\n');
 	QByteArray data = line.toUtf8();
-	if (!this->file.write(data)) {
-		emit saveFailed();
-	}
-	else {
-		this->endpos += data.size() + abc.size();
-	}
+	QTextStream stream (&file);
+	stream << data << "\n";
 }
-
-
 

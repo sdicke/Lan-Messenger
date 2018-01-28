@@ -24,8 +24,8 @@ PMWindow::PMWindow(QString &partner, QWidget *parent) :
 {
 	ui->setupUi(this);
 	ui->txtInput->setFocus();
-	ui->txtChat->setText("<p>You chats now with <span style=\"color: blue; font-weight: bold;\">" +  partner + "</p>");
-	//this->saver = new HistorySaver(partner);
+	ui->txtChat->setText("<p>You chats now with <span style=\"color: blue; font-weight: bold; line-height: 0.25;\">" +  partner + "</p>");
+	this->saver = new HistorySaver(partner);
 //	connect(this, SIGNAL(foc))
 }
 
@@ -46,20 +46,22 @@ void PMWindow::on_btnSend_clicked()
 	if (!message.isEmpty())
 	{
 		emit enteredText(message);
-		QString string("<p><span style=\"color: blue; font-weight: bold\">Me: </span>" + ui->txtInput->text() + "</p>");
+		QString style = "<span style=\"color: blue; font-weight: bold; line-height: 0.25;\">Me: </span>";
+		QString string("<p>" + style + ui->txtInput->text() + "</p>");
 		ui->txtChat->append(string);
 		ui->txtInput->clear();
 		ui->txtInput->setFocus();
-		//this->saver->saveLine(string);
+		this->saver->saveLine(string);
 	}
 	ui->txtInput->setFocus();
 }
 
 void PMWindow::receivedPM(QString text)
 {
-	QString string("<p><span style=\"color: red; font-weight: bold;\">" + this->windowTitle() + "</span>" + " : " + text + "</p>");
+	QString style = "<span style=\"color: red; font-weight: bold;\">";
+	QString string("<p>" + style + this->windowTitle() + "</span>" + ": " + text + "</p>");
 	ui->txtChat->append(string);
-	//this->saver->saveLine(string);
+	this->saver->saveLine(string);
 	ui->txtInput->setFocus();
 }
 

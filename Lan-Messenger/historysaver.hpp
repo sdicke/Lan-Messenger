@@ -25,6 +25,7 @@
 #include <QDir>
 #include <QByteArray>
 #include <QDateTime>
+#include <QTextStream>
 
 #include <iostream>
 
@@ -45,12 +46,10 @@ class HistorySaver : public QObject
 
 
 	private:
-		qint64 endpos;
 		QFile file;
 
 	signals:
-		void saveFailed();
-		void loadFailed();
+
 		void hasBlock(QByteArray block);
 
 	public slots:
