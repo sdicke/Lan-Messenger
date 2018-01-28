@@ -55,7 +55,6 @@ class HistorySaver : public QObject
 
 	public slots:
 		void saveLine(QString line);
-		void loadBlock();
 
 };
 

@@ -42,16 +42,5 @@ void HistorySaver::saveLine(QString line)
 	}
 }
 
-//Loads chat from file
-void HistorySaver::loadBlock() {
-	QByteArray data = this->file.readAll();
-	if (data.isEmpty()){
-		emit loadFailed();
-	}
-	else {
-		emit hasBlock(data);
-	}
-}
-
 
 
