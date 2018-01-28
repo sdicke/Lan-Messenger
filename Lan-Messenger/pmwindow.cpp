@@ -35,7 +35,8 @@ PMWindow::PMWindow(QString &partner, QWidget *parent) :
 //	delete ui;
 //}
 
-void PMWindow::focusInEvent(QFocusEvent* e) {
+void PMWindow::focusInEvent(QFocusEvent* event) {
+	event->accept();
 	ui->txtInput->setFocus();
 }
 
