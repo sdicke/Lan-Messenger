@@ -21,6 +21,7 @@
 #include <QMainWindow>
 #include <QDebug>
 #include <QCloseEvent>
+#include <QFocusEvent>
 #include "historysaver.hpp"
 
 namespace Ui {
@@ -31,27 +32,29 @@ class PMWindow : public QMainWindow
 {
     Q_OBJECT
     
-public:
-	explicit PMWindow(QString &partner, QWidget *parent = 0);
-    ~PMWindow();
-    
-private:
-	HistorySaver *saver;
-	Ui::PMWindow *ui;
-    void closeEvent (QCloseEvent * event) ;
+	public:
+		explicit PMWindow(QString &partner, QWidget *parent = 0);
 
-public slots:
-    void receivedPM(QString text);
-	void IDchanged(QString name);
+	protected:
+		void focusInEvent(QFocusEvent* e);
 
-signals:
-    void enteredText(QString text);
-    void closedWindow();
-	void setDefaultText(QString text);
+	private:
+		HistorySaver *saver;
+		Ui::PMWindow *ui;
+		void closeEvent (QCloseEvent * event) ;
 
-private slots:
-    void on_btnSend_clicked();
-    void on_txtInput_returnPressed();
+	public slots:
+		void receivedPM(QString text);
+		void IDchanged(QString name);
+
+	signals:
+		void enteredText(QString text);
+		void closedWindow();
+		void setDefaultText(QString text);
+
+	private slots:
+		void on_btnSend_clicked();
+		void on_txtInput_returnPressed();
 };
 
 #endif // PMWINDOW_H
