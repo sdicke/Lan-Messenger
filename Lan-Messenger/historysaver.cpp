@@ -33,7 +33,7 @@ HistorySaver::HistorySaver(QString partner) : QObject()
 		stream << "";
 	}
 	if (!this->file.open(QIODevice::Append)) {
-		std::cout << "Cannot open " << path.toStdString() << std::endl;
+		qDebug() << "Cannot open " << path.toStdString().c_str();
 	}
 }
 

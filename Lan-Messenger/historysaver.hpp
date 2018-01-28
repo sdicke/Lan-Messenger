@@ -26,8 +26,7 @@
 #include <QByteArray>
 #include <QDateTime>
 #include <QTextStream>
-
-#include <iostream>
+#include <QDebug>
 
 /*
  *
