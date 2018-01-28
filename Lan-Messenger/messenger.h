@@ -32,7 +32,7 @@ class Messenger : public QObject
 {
     Q_OBJECT
 public:
-    explicit Messenger(QObject *parent = 0);
+    explicit Messenger(QObject *parent = nullptr);
     QString Name();
     QString ID();
     PeerList& getPeers();

@@ -14,7 +14,7 @@ class Options : public QObject
 {
 		Q_OBJECT
 	public:
-		explicit Options(QObject *parent = 0);
+		explicit Options(QObject *parent = nullptr);
 		QString name();
 
 	private:

@@ -33,7 +33,7 @@ class PMWindow : public QMainWindow
     Q_OBJECT
     
 	public:
-		explicit PMWindow(QString &partner, QWidget *parent = 0);
+		explicit PMWindow(QString &partner, QWidget *parent = nullptr);
 
 	protected:
 		void focusInEvent(QFocusEvent* e);

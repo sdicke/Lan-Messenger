@@ -30,7 +30,7 @@ class DialogNickName : public QDialog
     Q_OBJECT
     
 public:
-    explicit DialogNickName(QWidget *parent = 0);
+	explicit DialogNickName(QWidget *parent = nullptr);
     ~DialogNickName();
     
 private slots:

@@ -32,7 +32,7 @@ class RoomWindow : public QMainWindow
     Q_OBJECT
     
 public:
-    explicit RoomWindow(QWidget *parent = 0);
+    explicit RoomWindow(QWidget *parent = nullptr);
     void updateList(QList<QString> list);
     ~RoomWindow();
     

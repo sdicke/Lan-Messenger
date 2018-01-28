@@ -29,7 +29,7 @@ class DialogRoom : public QDialog
     Q_OBJECT
     
 public:
-    explicit DialogRoom(QWidget *parent = 0);
+	explicit DialogRoom(QWidget *parent = nullptr);
     ~DialogRoom();
     
 private:
