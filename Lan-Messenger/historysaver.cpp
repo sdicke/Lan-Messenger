@@ -45,4 +45,3 @@ void HistorySaver::saveLine(QString line)
 	QTextStream stream (&file);
 	stream << data << "\n";
 }
-
