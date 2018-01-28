@@ -158,7 +158,8 @@ void MainWindow::onPMClosed()
 
 void MainWindow::onReceivedPM(QString from, QString text)
 {
-	makePMWindow(from)->receivedPM(text);
+	auto pmwindow = makePMWindow(from);
+	pmwindow->receivedPM(text);
 }
 
 void MainWindow::onReceivedRoom(QString room, QString from, QString text)
