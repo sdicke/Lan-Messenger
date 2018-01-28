@@ -46,7 +46,7 @@ void PMWindow::on_btnSend_clicked()
 	if (!message.isEmpty())
 	{
 		emit enteredText(message);
-		QString string("Me: " + ui->txtInput->text());
+		QString string("<p><span style=\"color: blue; font-weight: bold\">Me: </span>" + ui->txtInput->text() + "</p>");
 		ui->txtChat->append(string);
 		ui->txtInput->clear();
 		ui->txtInput->setFocus();
@@ -57,7 +57,7 @@ void PMWindow::on_btnSend_clicked()
 
 void PMWindow::receivedPM(QString text)
 {
-	QString string(this->windowTitle() + " : " + text);
+	QString string("<p><span style=\"color: red; font-weight: bold;\">" + this->windowTitle() + "</span>" + " : " + text + "</p>");
 	ui->txtChat->append(string);
 	//this->saver->saveLine(string);
 	ui->txtInput->setFocus();
