@@ -22,7 +22,7 @@
 #include <QString>
 
 namespace Ui {
-class DialogNickName;
+	class DialogNickName;
 }
 
 class DialogNickName : public QDialog

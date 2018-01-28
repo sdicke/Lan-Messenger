@@ -21,7 +21,7 @@
 #include <QDialog>
 
 namespace Ui {
-class DialogAbout;
+	class DialogAbout;
 }
 
 class DialogAbout : public QDialog
