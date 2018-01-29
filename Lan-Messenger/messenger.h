@@ -56,7 +56,6 @@ private slots:
 	void onTimerdiscovery();
 	void onReadyRead();
 
-
 private:
 	Peer _mypeer;
 	PeerList _peers;

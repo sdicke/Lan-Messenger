@@ -43,7 +43,6 @@ class HistorySaver : public QObject
 	public:
 		HistorySaver(QString partner);
 
-
 	private:
 		QFile file;
 
