@@ -47,7 +47,7 @@ void PMWindow::on_btnSend_clicked()
 	if (!message.isEmpty())
 	{
 		emit enteredText(message);
-		QString style = "<span style=\"color: blue; font-weight: bold; line-height: 0.25;\">Me: </span>";
+		QString style = "<span style=\"color: blue; font-weight: bold;\">Me: </span>";
 		QString string("<p>" + style + ui->txtInput->text() + "</p>");
 		ui->txtChat->append(string);
 		ui->txtInput->clear();
