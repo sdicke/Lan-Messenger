@@ -30,7 +30,7 @@
 
 /*
  *
- * Providing a interface to read saved chats from a file and to save new chat
+ * Providing an interface to read saved chats from a file and to save new chat
  * messages successive in a file
  *
  */
