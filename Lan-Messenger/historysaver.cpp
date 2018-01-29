@@ -27,11 +27,6 @@ HistorySaver::HistorySaver(QString partner) : QObject()
 	if (!wpath.exists()) {
 		wpath.mkpath(targetpath);
 	}
-	if (!this->file.exists()) {
-		this->file.open(QIODevice::WriteOnly | QIODevice::Text);
-		QTextStream stream(&file);
-		stream << "";
-	}
 	if (!this->file.open(QIODevice::Append)) {
 		qDebug() << "Cannot open " << path.toStdString().c_str();
 	}
@@ -39,9 +34,7 @@ HistorySaver::HistorySaver(QString partner) : QObject()
 
 void HistorySaver::saveLine(QString line)
 {
-	QString abc = QDateTime::currentDateTime().toString();
-	line.prepend(abc.toUtf8());
-	QByteArray data = line.toUtf8();
+	line.prepend(QDateTime::currentDateTime().toString().toUtf8() + 160);
 	QTextStream stream (&file);
-	stream << data << "\n";
+	stream << line << "\n";
 }
