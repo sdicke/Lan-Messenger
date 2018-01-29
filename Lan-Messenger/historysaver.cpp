@@ -34,8 +34,11 @@ HistorySaver::HistorySaver(QString partner) : QObject()
 
 void HistorySaver::saveLine(QString line)
 {
-	//160 is a charakter for non-breaking spaces
-	line.prepend(QDateTime::currentDateTime().toString().toUtf8() + 160);
+	//0xA0 is a charakter for non-breaking spaces
+	line.prepend(QDateTime::currentDateTime().toString() + "\xA0");
 	QTextStream stream (&file);
 	stream << line << "\n";
+	if (stream.status() == QTextStream::WriteFailed) {
+		qDebug() << "Cannot write to " << file.fileName();
+	}
 }
