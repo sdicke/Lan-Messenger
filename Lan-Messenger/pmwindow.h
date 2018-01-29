@@ -38,11 +38,11 @@ class PMWindow : public QMainWindow
 
 	protected:
 		void focusInEvent(QFocusEvent* event);
+		void closeEvent (QCloseEvent * event) ;
 
 	private:
 		HistorySaver *saver;
 		Ui::PMWindow *ui;
-		void closeEvent (QCloseEvent * event) ;
 
 	public slots:
 		void receivedPM(QString text);
