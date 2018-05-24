@@ -19,8 +19,8 @@
 #include "ui_dialogroom.h"
 
 DialogRoom::DialogRoom(QWidget *parent) :
-	QDialog(parent),
-	ui(new Ui::DialogRoom)
+QDialog{parent},
+ui{new Ui::DialogRoom}
 {
 	ui->setupUi(this);
 }

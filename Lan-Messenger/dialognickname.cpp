@@ -18,9 +18,11 @@
 #include "dialognickname.h"
 #include "ui_dialognickname.h"
 
+using namespace std::literals::string_literals;
+
 DialogNickName::DialogNickName(QWidget *parent) :
-	QDialog(parent),
-	ui(new Ui::DialogNickName)
+QDialog{parent},
+ui{new Ui::DialogNickName}
 {
 	ui->setupUi(this);
 }
@@ -32,10 +34,10 @@ DialogNickName::~DialogNickName()
 
 void DialogNickName::on_btnOk_clicked()
 {
-	QString name = ui->txtName->text();
+	QString name{ui->txtName->text()};
 	if (name.isEmpty())
 	{
-		name = "anonymous";
+		name ="anonymous";
 	}
 	emit setName(name);
 	this->deleteLater();
