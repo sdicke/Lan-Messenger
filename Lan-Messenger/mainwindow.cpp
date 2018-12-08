@@ -57,9 +57,9 @@ void MainWindow::onUpdateList()
 {
 	ui->listUsers->clear();
 	QList<Peer>& peers = msgr->getPeers();
-	for(int i=0; i<peers.count(); i++)
+	for (auto &current : peers)
 	{
-		ui->listUsers->addItem(peers[i].ID());
+		ui->listUsers->addItem(current.ID());
 	}
 }
 

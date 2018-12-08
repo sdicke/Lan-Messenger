@@ -60,9 +60,9 @@ void RoomWindow::closeEvent(QCloseEvent *event)
 void RoomWindow::updateList(QList<QString> list)
 {
 	ui->listUsers->clear();
-	for(int i=0; i<list.count(); i++)
+	for (auto &current : list)
 	{
-		ui->listUsers->addItem(list[i]);
+		ui->listUsers->addItem(current);
 	}
 }
 
