@@ -238,7 +238,6 @@ void Messenger::processTheDatagram(QByteArray data, QHostAddress sender)
 		}
 	}
 
-
 	if(packet[2] == "PM")
 	{
 		QString from = packet[3];
@@ -277,7 +276,7 @@ void Messenger::processTheDatagram(QByteArray data, QHostAddress sender)
 void Messenger::sendPM(QString text, QString to)
 {
 	QHostAddress address;
-	for(int i=0; i<_peers.count(); i++)
+	for(int i = 0; i < _peers.count(); i++)
 	{
 		if(_peers[i].ID() == to)
 		{
