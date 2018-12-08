@@ -51,7 +51,7 @@ void Messenger::onTimerdiscovery()
 	_udp.writeDatagram(packet.toUtf8(), target, 2880);
 
 	// chekc for olds
-	for(int i=0; i<_peers.count(); i++)
+	for(int i = 0; i < _peers.count(); i++)
 		if(_peers[i].Lastseen.secsTo(QTime::currentTime()) > 10)
 		{
 			_peers.removeAt(i);
@@ -59,17 +59,17 @@ void Messenger::onTimerdiscovery()
 		}
 
 	// room list
-	for(int i=0; i<_rooms.count(); i++)
+	for(int i = 0; i < _rooms.count(); i++)
 		roomList(_rooms[i]);
 
-	for(int i=0; i<_rooms.count(); i++)
+	for(int i = 0; i < _rooms.count(); i++)
 	{
 		QString room = _rooms[i];
 		if(!_roomslist.contains(room))
 		{
 			continue;
 		}
-		for(int j=0; j<_roomslist[room].count(); j++)
+		for(int j=0; j < _roomslist[room].count(); j++)
 		{
 			if(_roomslist[room].at(j).Lastseen.secsTo(QTime::currentTime()) > 10)
 			{
@@ -93,7 +93,7 @@ void Messenger::onReadyRead()
 		_udp.readDatagram(datagram.data(), datagram.size(), &sender, &senderPort);
 
 		bool flag = true;
-		for(int i=0; i < _myips.count(); ++i)
+		for(int i = 0; i < _myips.count(); ++i)
 		{
 			if(sender.toString() == _myips[i].toString())
 			{
@@ -164,7 +164,7 @@ void Messenger::processTheDatagram(QByteArray data, QHostAddress sender)
 	if(packet[2] == "DISCOVERY")
 	{
 		int found = -1;
-		for(int i=0; i<_peers.count(); i++)
+		for(int i = 0; i < _peers.count(); i++)
 			if(_peers[i].ID() == packet[3]) found = i;
 		if(found == -1)
 		{
@@ -202,7 +202,7 @@ void Messenger::processTheDatagram(QByteArray data, QHostAddress sender)
 		}
 
 		int found = -1;
-		for(int i=0; i<_roomslist[room].count(); i++)
+		for(int i = 0; i<_roomslist[room].count(); i++)
 		{
 			if(_roomslist[room][i].ID() == packet[4])
 			{
@@ -254,7 +254,7 @@ void Messenger::processTheDatagram(QByteArray data, QHostAddress sender)
 			text += ":" + packet[i];
 		}
 		bool found=false;
-		for(int i=0;i<_rooms.count(); i++)
+		for(int i = 0; i < _rooms.count(); i++)
 		{
 			if(_rooms[i] == room)
 			{
