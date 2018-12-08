@@ -44,6 +44,8 @@ class HistorySaver : public QObject
 		HistorySaver(QString partner);
 
 	private:
+		//0xA0 is a charakter for non-breaking spaces
+		static constexpr char separator = '\xA0';
 		QFile file;
 
 	signals:
