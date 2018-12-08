@@ -111,15 +111,15 @@ void Messenger::onReadyRead()
 
 void Messenger::log(QString data, QString destination, bool isSent)
 {
-	QString messege;
-	messege += isSent? "Sent	 ":"Received ";
-	messege += QString::number(data.length()) + " bytes";
-	messege += isSent? " to   ":" from ";
+	QString message;
+	message += isSent? "Sent	 ":"Received ";
+	message += QString::number(data.length()) + " bytes";
+	message += isSent? " to   ":" from ";
 	QString fill;
 	fill.fill(' ', 15 - destination.size());
-	messege += destination + fill + "  Data: ";
-	messege += data;
-	qDebug() << messege.toStdString().c_str();
+	message += destination + fill + "  Data: ";
+	message += data;
+	qDebug() << message.toStdString().c_str();
 }
 
 void Messenger::logSent(QString data, QHostAddress dest)
