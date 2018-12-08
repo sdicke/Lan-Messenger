@@ -41,7 +41,7 @@ class HistorySaver : public QObject
 	Q_OBJECT
 
 	public:
-		HistorySaver(QString partner);
+		HistorySaver(const QString &partner);
 
 	private:
 		//0xA0 is a charakter for non-breaking spaces

@@ -17,7 +17,7 @@
 
 #include "historysaver.hpp"
 
-HistorySaver::HistorySaver(QString partner) : QObject()
+HistorySaver::HistorySaver(const QString &partner)
 {
 	QString homePath = QStandardPaths::standardLocations(QStandardPaths::HomeLocation).first();
 	QString targetpath = homePath + "/.cache/LanMessenger/history/";
