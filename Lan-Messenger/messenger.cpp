@@ -86,7 +86,12 @@ void Messenger::onReadyRead()
 	while (_udp.hasPendingDatagrams())
 	{
 		QByteArray datagram;
-		datagram.resize(_udp.pendingDatagramSize());
+		constexpr int maxSize = std::numeric_limits<int>::max();
+		qint64 datagramSize = _udp.pendingDatagramSize();
+		if (datagramSize > maxSize) {
+			qDebug() << "Datagram size exceeds processing limit of " << maxSize << " bytes.";
+		}
+		datagram.resize(static_cast<int>(datagramSize));
 		QHostAddress sender;
 		quint16 senderPort;
 

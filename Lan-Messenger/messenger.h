@@ -22,6 +22,7 @@
 #include <QtNetwork>
 #include <QObject>
 #include <QString>
+#include <limits>
 #include "peer.h"
 
 
