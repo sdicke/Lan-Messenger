@@ -151,7 +151,7 @@ void Messenger::processTheDatagram(QByteArray data, QHostAddress sender)
 {
 	QString str_packet = QString(data);
 	QStringList packet = str_packet.split(':');
-	if(packet.count()<4)
+	if(packet.count() < 4)
 	{
 		qWarning("Warning: Unknown Packet. ");
 		return;
