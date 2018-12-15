@@ -82,5 +82,5 @@ void PMWindow::closeEvent(QCloseEvent *event)
 
 void PMWindow::IDchanged(QString name)
 {
-
+	this->myself = name;
 }
