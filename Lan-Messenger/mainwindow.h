@@ -70,8 +70,9 @@ private:
 	QMap<PMWindow*, QString> pmr;
 	QMap<QString, RoomWindow*> rms;
 	QMap<RoomWindow*, QString> rmr;
-	PMWindow* makePMWindow(QString title);
+	PMWindow* makePMWindow(QString partern);
 	RoomWindow* makeRoomWindow(QString title);
+	QString myName;
 
 };
 

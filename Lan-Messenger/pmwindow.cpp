@@ -19,9 +19,11 @@
 #include "pmwindow.h"
 #include "ui_pmwindow.h"
 
-PMWindow::PMWindow(QString &partner, QWidget *parent) :
+PMWindow::PMWindow(QString &partner, QString myself, QWidget *parent) :
 	QMainWindow(parent),
-	ui(new Ui::PMWindow)
+	ui(new Ui::PMWindow),
+	partner{partner},
+	myself{myself}
 {
 	ui->setupUi(this);
 	ui->txtInput->setFocus();
@@ -60,7 +62,7 @@ void PMWindow::on_btnSend_clicked()
 void PMWindow::receivedPM(QString text)
 {
 	QString style = "<span style=\"color: red; font-weight: bold;\">";
-	QString string("<p>" + style + this->windowTitle() + "</span>" + ": " + text + "</p>");
+	QString string("<p>" + style + this->partner + "</span>" + ": " + text + "</p>");
 	ui->txtChat->append(string);
 	this->saver->saveLine(string);
 	ui->txtInput->setFocus();

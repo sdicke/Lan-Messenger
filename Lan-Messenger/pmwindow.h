@@ -33,7 +33,7 @@ class PMWindow : public QMainWindow
 	Q_OBJECT
 
 	public:
-		explicit PMWindow(QString &partner, QWidget *parent = nullptr);
+		explicit PMWindow(QString &partner, QString myself, QWidget *parent = nullptr);
 		~PMWindow();
 
 	protected:
@@ -43,6 +43,8 @@ class PMWindow : public QMainWindow
 	private:
 		HistorySaver *saver;
 		Ui::PMWindow *ui;
+		QString partner;
+		QString myself;
 
 	public slots:
 		void receivedPM(QString text);

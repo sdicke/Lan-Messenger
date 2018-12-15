@@ -50,6 +50,7 @@ void MainWindow::onSetName(QString name)
 {
 	msgr->setName(name);
 	ui->lblWelcome->setText("Welcome " + msgr->Name());
+	this->myName = name;
 	msgr->start();
 }
 
@@ -81,22 +82,22 @@ void MainWindow::on_listUsers_doubleClicked(const QModelIndex &index __attribute
 	makePMWindow(userid);
 }
 
-PMWindow* MainWindow::makePMWindow(QString title)
+PMWindow* MainWindow::makePMWindow(QString partner)
 {
-	if(pms.keys().contains(title))
+	if(pms.keys().contains(partner))
 	{
-		pms[title]->setFocus();
-		return pms[title];
+		pms[partner]->setFocus();
+		return pms[partner];
 	}
 	else
 	{
-		PMWindow* newpm = new PMWindow(title);
-		pms.insert(title, newpm);
-		pmr.insert(newpm, title);
+		PMWindow* newpm = new PMWindow(partner, myName);
+		pms.insert(partner, newpm);
+		pmr.insert(newpm, partner);
 		connect(newpm, SIGNAL(enteredText(QString)), this, SLOT(onPMSend(QString)));
 		connect(newpm, SIGNAL(closedWindow()), this, SLOT(onPMClosed()));
 		connect(&this->options, SIGNAL(nameChanged(QString)), newpm, SLOT(IDchanged(QString)));
-		newpm->setWindowTitle(title);
+		newpm->setWindowTitle(partner);
 		newpm->show();
 		return newpm;
 	}
