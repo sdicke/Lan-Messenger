@@ -69,6 +69,10 @@ private:
 	void logSent(QString data, QHostAddress dest);
 	void logReceived(QString data, QHostAddress dest);
 	void processTheDatagram(QByteArray data, QHostAddress sender);
+	void handleDiscoverDatagram(const QStringList &packet, const QHostAddress &sender);
+	void handleRoomListDatagram(const QStringList &packet, const QHostAddress &sender);
+	void handlePMDatagram(const QStringList &packet);
+	void handleRoomDatagram(const QStringList &packet);
 	void roomList(QString room);
 };
 

@@ -149,8 +149,8 @@ PeerList& Messenger::getRoomPeers(QString room)
 
 void Messenger::processTheDatagram(QByteArray data, QHostAddress sender)
 {
-	QString str_packet = QString(data);
-	QStringList packet = str_packet.split(':');
+	const QString str_packet = QString(data);
+	const QStringList packet = str_packet.split(':');
 	if(packet.count() < 4)
 	{
 		qWarning("Warning: Unknown Packet. ");
@@ -168,110 +168,127 @@ void Messenger::processTheDatagram(QByteArray data, QHostAddress sender)
 	}
 	if(packet[2] == "DISCOVERY")
 	{
-		int found = -1;
-		for(int i = 0; i < _peers.count(); i++)
-			if(_peers[i].ID() == packet[3]) found = i;
-		if(found == -1)
-		{
-			Peer newpeer;
-			QString peerid = packet[3];
-			QStringList peerids = peerid.split('@');
-			if(peerids.count() != 2)
-			{
-				qWarning("Warning: Wronge new Peer ID.");
-				return;
-			}
-			newpeer.Name = peerids[0];
-			newpeer.Domain = peerids[1];
-			newpeer.Host = sender;
-			newpeer.Lastseen = QTime::currentTime();
-			_peers.append(newpeer);
-			emit peersUpdated();
-		}
-		else
-		{
-			_peers[found].Lastseen = QTime::currentTime();
-		}
+		this->handleDiscoverDatagram(packet, sender);
 	}
 
 	if(packet[2] == "ROOMLIST")
 	{
-		QString room = packet[3];
-		if(!_rooms.contains(room))
-		{
-			return;
-		}
-		if(!_roomslist.contains(room))
-		{
-			_roomslist.insert(room, PeerList());
-		}
-
-		int found = -1;
-		for(int i = 0; i<_roomslist[room].count(); i++)
-		{
-			if(_roomslist[room][i].ID() == packet[4])
-			{
-				found = i;
-			}
-		}
-
-		if(found == -1)
-		{
-			Peer newpeer;
-			QString peerid = packet[4];
-			QStringList peerids = peerid.split('@');
-			if(peerids.count() != 2)
-			{
-				qWarning("Warning: Wronge new Peer ID.");
-				return;
-			}
-			newpeer.Name = peerids[0];
-			newpeer.Domain = peerids[1];
-			newpeer.Host = sender;
-			newpeer.Lastseen = QTime::currentTime();
-			_roomslist[room].append(newpeer);
-			emit roomListUpdated(room, "***  " + newpeer.ID() + "  Joined. ***");
-		}
-		else
-		{
-			_roomslist[room][found].Lastseen = QTime::currentTime();
-		}
+		this->handleRoomListDatagram(packet, sender);
 	}
 
 	if(packet[2] == "PM")
 	{
-		QString from = packet[3];
-		QString text = packet[4];
-		for(int i=5; i<packet.count(); i++)
-		{
-			text += ":" + packet[i];
-		}
-		emit receivedPM(from, text);
+		this->handlePMDatagram(packet);
 	}
 	if(packet[2] == "ROOM")
 	{
-		QString room = packet[3];
-		QString from = packet[4];
-		QString text = packet[5];
-		for(int i=6; i<packet.count(); i++)
-		{
-			text += ":" + packet[i];
-		}
-		bool found=false;
-		for(int i = 0; i < _rooms.count(); i++)
-		{
-			if(_rooms[i] == room)
-			{
-				found = true;
-			}
-		}
-
-		if(found)
-		{
-			emit receivedRoom(room, from, text);
-		}
+		this->handleRoomDatagram(packet);
 	}
 }
+
+void Messenger::handleDiscoverDatagram(const QStringList &packet, const QHostAddress &sender) {
+	int found = -1;
+	for(int i = 0; i < _peers.count(); i++)
+		if(_peers[i].ID() == packet[3]) found = i;
+	if(found == -1)
+	{
+		Peer newpeer;
+		QString peerid = packet[3];
+		QStringList peerids = peerid.split('@');
+		if(peerids.count() != 2)
+		{
+			qWarning("Warning: Wronge new Peer ID.");
+			return;
+		}
+		newpeer.Name = peerids[0];
+		newpeer.Domain = peerids[1];
+		newpeer.Host = sender;
+		newpeer.Lastseen = QTime::currentTime();
+		_peers.append(newpeer);
+		emit peersUpdated();
+	}
+	else
+	{
+		_peers[found].Lastseen = QTime::currentTime();
+	}
+}
+
+void Messenger::handleRoomListDatagram(const QStringList &packet, const QHostAddress &sender) {
+	QString room = packet[3];
+	if(!_rooms.contains(room))
+	{
+		return;
+	}
+	if(!_roomslist.contains(room))
+	{
+		_roomslist.insert(room, PeerList());
+	}
+
+	int found = -1;
+	for(int i = 0; i<_roomslist[room].count(); i++)
+	{
+		if(_roomslist[room][i].ID() == packet[4])
+		{
+			found = i;
+		}
+	}
+
+	if(found == -1)
+	{
+		Peer newpeer;
+		QString peerid = packet[4];
+		QStringList peerids = peerid.split('@');
+		if(peerids.count() != 2)
+		{
+			qWarning("Warning: Wronge new Peer ID.");
+			return;
+		}
+		newpeer.Name = peerids[0];
+		newpeer.Domain = peerids[1];
+		newpeer.Host = sender;
+		newpeer.Lastseen = QTime::currentTime();
+		_roomslist[room].append(newpeer);
+		emit roomListUpdated(room, "***  " + newpeer.ID() + "  Joined. ***");
+	}
+	else
+	{
+		_roomslist[room][found].Lastseen = QTime::currentTime();
+	}
+}
+
+void Messenger::handlePMDatagram(const QStringList &packet) {
+	QString from = packet[3];
+	QString text = packet[4];
+	for(int i=5; i<packet.count(); i++)
+	{
+		text += ":" + packet[i];
+	}
+	emit receivedPM(from, text);
+}
+
+void Messenger::handleRoomDatagram(const QStringList &packet) {
+	QString room = packet[3];
+	QString from = packet[4];
+	QString text = packet[5];
+	for(int i=6; i<packet.count(); i++)
+	{
+		text += ":" + packet[i];
+	}
+	bool found=false;
+	for(int i = 0; i < _rooms.count(); i++)
+	{
+		if(_rooms[i] == room)
+		{
+			found = true;
+		}
+	}
+
+	if(found)
+	{
+		emit receivedRoom(room, from, text);
+	}
+}
+
 
 void Messenger::sendPM(QString text, QString to)
 {
