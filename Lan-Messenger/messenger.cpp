@@ -151,36 +151,39 @@ void Messenger::processTheDatagram(QByteArray data, QHostAddress sender)
 {
 	const QString str_packet = QString(data);
 	const QStringList packet = str_packet.split(':');
+	constexpr int protocol = 0;
+	constexpr int version = 1;
+	constexpr int type = 2;
 	if(packet.count() < 4)
 	{
 		qWarning("Warning: Unknown Packet. ");
 		return;
 	}
-	if(packet[0] != "288")
+	if(packet[protocol] != "288")
 	{
 		qWarning("Warning: Protocol Mismatch. ");
 		return;
 	}
-	if(packet[1] != "0")
+	if(packet[version] != "0")
 	{
 		qWarning("Warning: Protocol Version Mismatch. ");
 		return;
 	}
-	if(packet[2] == "DISCOVERY")
+	if(packet[type] == "DISCOVERY")
 	{
 		this->handleDiscoverDatagram(packet, sender);
 	}
 
-	if(packet[2] == "ROOMLIST")
+	if(packet[type] == "ROOMLIST")
 	{
 		this->handleRoomListDatagram(packet, sender);
 	}
 
-	if(packet[2] == "PM")
+	if(packet[type] == "PM")
 	{
 		this->handlePMDatagram(packet);
 	}
-	if(packet[2] == "ROOM")
+	if(packet[type] == "ROOM")
 	{
 		this->handleRoomDatagram(packet);
 	}
