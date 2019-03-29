@@ -59,7 +59,7 @@ private slots:
 	void onReadyRead();
 
 private:
-	QString PCK_HEADER = "288:0:";
+	const QString PCK_HEADER = "288:0:";
 	Peer _mypeer;
 	PeerList _peers;
 	QUdpSocket _udp;
