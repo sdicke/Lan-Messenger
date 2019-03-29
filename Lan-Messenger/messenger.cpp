@@ -117,9 +117,9 @@ void Messenger::onReadyRead()
 void Messenger::log(QString data, QString destination, bool isSent)
 {
 	QString message;
-	message += isSent? "Sent ":"Received ";
+	message += isSent ? "Sent ":"Received ";
 	message += QString::number(data.length()) + " bytes";
-	message += isSent? " to   ":" from ";
+	message += isSent ? " to   ":" from ";
 	QString fill;
 	fill.fill(' ', 15 - destination.size());
 	message += destination + fill + "  Data: ";
