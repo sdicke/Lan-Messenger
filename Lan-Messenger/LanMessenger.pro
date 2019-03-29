@@ -38,7 +38,8 @@ HEADERS += \
 	optionswindow.hpp \
 	peer.h \
 	pmwindow.h \
-	roomwindow.h
+	roomwindow.h \
+    packet.hpp
 
 SOURCES += \
 	dialogabout.cpp \

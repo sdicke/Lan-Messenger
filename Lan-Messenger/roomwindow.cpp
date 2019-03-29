@@ -41,7 +41,7 @@ void RoomWindow::on_btnSend_clicked()
 
 void RoomWindow::receivedPM(QString from, QString text)
 {
-	QString f = from.count()>1? from + " : " : "";
+	QString f = from.count() > 1 ? from + " : " : "";
 	ui->txtChat->append(f + text);
 }
 
