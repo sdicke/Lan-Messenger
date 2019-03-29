@@ -151,80 +151,67 @@ void Messenger::processTheDatagram(QByteArray data, QHostAddress sender)
 {
 	const QString str_packet = QString(data);
 	const QStringList packet = str_packet.split(':');
-	constexpr int protocol = 0;
-	constexpr int version = 1;
-	constexpr int type = 2;
+	Packet basicdescription;
 	if(packet.count() < 4)
 	{
 		qWarning("Warning: Unknown Packet. ");
 		return;
 	}
-	if(packet[protocol] != "288")
+	if(packet[Packet::fields::PROTOCOL] != basicdescription.fieldMap[Packet::fields::PROTOCOL])
 	{
 		qWarning("Warning: Protocol Mismatch. ");
 		return;
 	}
-	if(packet[version] != "0")
+	if(packet[Packet::fields::VERSION] != basicdescription.fieldMap[Packet::fields::VERSION])
 	{
 		qWarning("Warning: Protocol Version Mismatch. ");
 		return;
 	}
-	if(packet[type] == "DISCOVERY")
+
+	if(packet[Packet::fields::TYPE] == "DISCOVERY")
 	{
-		DiscoverPacket obj;
-		if (this->isInFieldsCountRange(packet, obj))
+		DiscoverPacket desciption;
+		if (this->checkPackageConstraints(packet, desciption))
 		{
-			this->handleDiscoverDatagram(packet, sender);
-		}
-		else
-		{
-			this->printHeaderFieldMismatch("DISCOVERY", 4);
+			this->handleDiscoverDatagram(packet, sender, desciption);
 		}
 	}
 
-	if(packet[type] == "ROOMLIST")
+	if(packet[Packet::fields::TYPE] == "ROOMLIST")
 	{
-		RoomListPacket obj;
-		if (this->isInFieldsCountRange(packet, obj))
+		RoomListPacket desciption;
+		if (this->checkPackageConstraints(packet, desciption))
 		{
-			this->handleRoomListDatagram(packet, sender);
+			this->handleRoomListDatagram(packet, sender, desciption);
 		}
 	}
 
-	if(packet[type] == "PM")
+	if(packet[Packet::fields::TYPE] == "PM")
 	{
-		PMPacket obj;
-		if (this->isInFieldsCountRange(packet, obj))
+		PMPacket desciption;
+		if (this->checkPackageConstraints(packet, desciption))
 		{
-			this->handlePMDatagram(packet);
-		}
-		else
-		{
-			this->printHeaderFieldMismatch("PM", 5);
+			this->handlePMDatagram(packet, sender, desciption);
 		}
 	}
-	if(packet[type] == "ROOM")
+	if(packet[Packet::fields::TYPE] == "ROOM")
 	{
-		RoomPacket obj;
-		if (this->isInFieldsCountRange(packet, obj))
+		RoomPacket desciption;
+		if (this->checkPackageConstraints(packet, desciption))
 		{
-			this->handleRoomDatagram(packet);
-		}
-		else
-		{
-			this->printHeaderFieldMismatch("ROOM", 6);
+			this->handleRoomDatagram(packet, sender, desciption);
 		}
 	}
 }
 
-void Messenger::handleDiscoverDatagram(const QStringList &packet, const QHostAddress &sender) {
+void Messenger::handleDiscoverDatagram(const QStringList &packet, const QHostAddress &sender, const Packet &description) {
 	int found = -1;
 	for(int i = 0; i < _peers.count(); i++)
-		if(_peers[i].ID() == packet[3]) found = i;
+		if(_peers[i].ID() == packet[DiscoverPacket::fields::ID]) found = i;
 	if(found == -1)
 	{
 		Peer newpeer;
-		QString peerid = packet[3];
+		QString peerid = packet[DiscoverPacket::fields::ID];
 		QStringList peerids = peerid.split('@');
 		if(peerids.count() != 2)
 		{
@@ -244,8 +231,8 @@ void Messenger::handleDiscoverDatagram(const QStringList &packet, const QHostAdd
 	}
 }
 
-void Messenger::handleRoomListDatagram(const QStringList &packet, const QHostAddress &sender) {
-	QString room = packet[3];
+void Messenger::handleRoomListDatagram(const QStringList &packet, const QHostAddress &sender, const Packet &description) {
+	QString room = packet[RoomListPacket::fields::ROOM];
 	if(!_rooms.contains(room))
 	{
 		return;
@@ -287,9 +274,9 @@ void Messenger::handleRoomListDatagram(const QStringList &packet, const QHostAdd
 	}
 }
 
-void Messenger::handlePMDatagram(const QStringList &packet) {
-	QString from = packet[3];
-	QString text = packet[4];
+void Messenger::handlePMDatagram(const QStringList &packet, const QHostAddress &sender, const Packet &description) {
+	QString from = packet[PMPacket::fields::FROM];
+	QString text = packet[PMPacket::fields::TEXT];
 	for(int i=5; i < packet.count(); i++)
 	{
 		text += ":" + packet[i];
@@ -297,10 +284,10 @@ void Messenger::handlePMDatagram(const QStringList &packet) {
 	emit receivedPM(from, text);
 }
 
-void Messenger::handleRoomDatagram(const QStringList &packet) {
-	QString room = packet[3];
-	QString from = packet[4];
-	QString text = packet[5];
+void Messenger::handleRoomDatagram(const QStringList &packet, const QHostAddress &sender, const Packet &description) {
+	QString room = packet[RoomPacket::ROOM];
+	QString from = packet[RoomPacket::fields::FROM];
+	QString text = packet[RoomPacket::fields::TEXT];
 	for(int i=6; i < packet.count(); i++)
 	{
 		text += ":" + packet[i];
@@ -362,14 +349,20 @@ void Messenger::roomList(QString room)
 	_udp.writeDatagram(packet.toUtf8(), target, 2880);
 }
 
-//Do not expose this function to outside
-void Messenger::printHeaderFieldMismatch(const QString &type, unsigned int count)
+bool Messenger::checkPackageConstraints(const QStringList &packet, const Packet &protype)
 {
-	QString message("Warning: Header Field Mismatch: "  + type + " packet with lesser than " + QString::number(count) + "fields.");
-	qWarning(message.toStdString().c_str());
-}
-
-bool Messenger::isInFieldsCountRange(const QStringList &packet, const Packet &protype)
-{
-	return packet.size() > protype.minSize && packet.size() < protype.maxSize;
+	QString count = QString::number(packet.count());
+	if (packet.count() < protype.minSize) {
+		QString min = QString::number(protype.minSize);
+		QString message = ("Warning: Header Field Mismatch: Packet contains" + count + " field, but it must contain at least " + min + " fields.");
+		qWarning(message.toStdString().c_str());
+	}
+	else if (packet.count() > protype.maxSize) {
+		QString max = QString::number(protype.maxSize);
+		QString message("Warning: Header Field Mismatch: Packet contains" + count + " field, but it must contain at most " + max + " fields." );
+		qWarning(message.toStdString().c_str());
+	}
+	else {
+		return  true;
+	}
 }

@@ -72,13 +72,13 @@ private:
 	void logSent(QString data, QHostAddress dest);
 	void logReceived(QString data, QHostAddress dest);
 	void processTheDatagram(QByteArray data, QHostAddress sender);
-	void handleDiscoverDatagram(const QStringList &packet, const QHostAddress &sender);
-	void handleRoomListDatagram(const QStringList &packet, const QHostAddress &sender);
-	void handlePMDatagram(const QStringList &packet);
-	void handleRoomDatagram(const QStringList &packet);
+	void handleDiscoverDatagram(const QStringList &packet, const QHostAddress &sender, const Packet &description);
+	void handleRoomListDatagram(const QStringList &packet, const QHostAddress &sender, const Packet &description);
+	void handlePMDatagram(const QStringList &packet, const QHostAddress &sender, const Packet &description);
+	void handleRoomDatagram(const QStringList &packet, const QHostAddress &sender, const Packet &description);
 	void roomList(QString room);
 	void printHeaderFieldMismatch(const QString &type, unsigned int count);
-	bool isInFieldsCountRange(const QStringList &packet, const Packet &protype);
+	bool checkPackageConstraints(const QStringList &packet, const Packet &protype);
 };
 
 #endif // MESSENGER_H

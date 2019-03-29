@@ -12,7 +12,7 @@ TARGET = LanMessenger
 TEMPLATE = app
 
 CONFIG += release
-QMAKE_CXXFLAGS += -std=c++14
+QMAKE_CXXFLAGS += -std=c++17
 DESTDIR += ../build/LanMessenger
 
 SUBDIRS += \
