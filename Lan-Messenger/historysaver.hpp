@@ -37,7 +37,6 @@
 
 class HistorySaver : public QObject
 {
-
 	Q_OBJECT
 
 	public:

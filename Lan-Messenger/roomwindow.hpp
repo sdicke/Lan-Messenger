@@ -24,7 +24,7 @@
 #include <QModelIndex>
 
 namespace Ui {
-class RoomWindow;
+	class RoomWindow;
 }
 
 class RoomWindow : public QMainWindow

@@ -10,7 +10,7 @@ namespace Ui {
 
 class OptionsWindow : public QWidget
 {
-		Q_OBJECT
+	Q_OBJECT
 
 	public:
 		explicit OptionsWindow(QWidget *parent = nullptr);

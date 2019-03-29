@@ -17,10 +17,6 @@
 
 #include "peer.hpp"
 
-Peer::Peer()
-{
-}
-
 QString Peer::ID()
 {
 	return Name + "@" + Domain;

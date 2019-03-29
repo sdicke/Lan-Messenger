@@ -43,13 +43,13 @@ public:
 	void sendRoom(QString text, QString room);
 	void joinRoom(QString room);
 	void leaveRoom(QString room);
-	
+
 signals:
 	void peersUpdated();
 	void roomListUpdated(QString room, QString message);
 	void receivedPM(QString from, QString text);
 	void receivedRoom(QString room, QString from, QString text);
-	
+
 public slots:
 	void setName(QString name);
 	void start();

@@ -12,7 +12,7 @@
 
 class Options : public QObject
 {
-		Q_OBJECT
+	Q_OBJECT
 	public:
 		explicit Options(QObject *parent = nullptr);
 		QString name();

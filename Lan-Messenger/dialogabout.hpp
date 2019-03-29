@@ -31,7 +31,7 @@ class DialogAbout : public QDialog
 public:
 	explicit DialogAbout(QWidget *parent = nullptr);
 	~DialogAbout();
-	
+
 private:
 	Ui::DialogAbout *ui;
 };

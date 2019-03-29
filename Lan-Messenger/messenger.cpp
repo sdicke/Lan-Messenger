@@ -307,7 +307,6 @@ void Messenger::handleRoomDatagram(const QStringList &packet, const QHostAddress
 	}
 }
 
-
 void Messenger::sendPM(QString text, QString to)
 {
 	QHostAddress address;
