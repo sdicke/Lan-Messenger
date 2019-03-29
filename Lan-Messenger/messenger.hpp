@@ -24,7 +24,10 @@
 #include <QString>
 #include <limits>
 #include "peer.hpp"
-
+#include "discoverpacket.hpp"
+#include "pmpacket.hpp"
+#include "roomlistpacket.hpp"
+#include "roompacket.hpp"
 
 #define PCK_HEADER "288:0:"
 typedef QList<Peer> PeerList;
@@ -75,6 +78,7 @@ private:
 	void handleRoomDatagram(const QStringList &packet);
 	void roomList(QString room);
 	void printHeaderFieldMismatch(const QString &type, unsigned int count);
+	bool isInFieldsCountRange(const QStringList &packet, const Packet &protype);
 };
 
 #endif // MESSENGER_H

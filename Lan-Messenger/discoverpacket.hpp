@@ -3,9 +3,12 @@
 
 #include "packet.hpp"
 
-class DiscoverPacket : Packet
+class DiscoverPacket : public Packet
 {
-	DiscoverPacket();
+	public:
+		unsigned int minSize = 4;
+		unsigned int maxSize = 4;
+		enum fields {PROTOCOL, VERSION, TYPE, ID};
 };
 
 #endif // DISCOVERPACKET_HPP

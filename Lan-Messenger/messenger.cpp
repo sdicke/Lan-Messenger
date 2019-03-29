@@ -171,7 +171,8 @@ void Messenger::processTheDatagram(QByteArray data, QHostAddress sender)
 	}
 	if(packet[type] == "DISCOVERY")
 	{
-		if (packet.size() > 3)
+		DiscoverPacket obj;
+		if (!this->isInFieldsCountRange(packet, obj))
 		{
 			this->handleDiscoverDatagram(packet, sender);
 		}
@@ -183,19 +184,17 @@ void Messenger::processTheDatagram(QByteArray data, QHostAddress sender)
 
 	if(packet[type] == "ROOMLIST")
 	{
-		if (packet.size() > 3)
+		RoomListPacket obj;
+		if (this->isInFieldsCountRange(packet, obj))
 		{
 			this->handleRoomListDatagram(packet, sender);
-		}
-		else
-		{
-			this->printHeaderFieldMismatch("ROOMLIST", 4);
 		}
 	}
 
 	if(packet[type] == "PM")
 	{
-		if (packet.size() > 4)
+		PMPacket obj;
+		if (this->isInFieldsCountRange(packet, obj))
 		{
 			this->handlePMDatagram(packet);
 		}
@@ -206,7 +205,8 @@ void Messenger::processTheDatagram(QByteArray data, QHostAddress sender)
 	}
 	if(packet[type] == "ROOM")
 	{
-		if (packet.size() > 5)
+		RoomPacket obj;
+		if (this->isInFieldsCountRange(packet, obj))
 		{
 			this->handleRoomDatagram(packet);
 		}
@@ -367,4 +367,9 @@ void Messenger::printHeaderFieldMismatch(const QString &type, unsigned int count
 {
 	QString message("Warning: Header Field Mismatch: "  + type + " packet with lesser than " + QString::number(count) + "fields.");
 	qWarning(message.toStdString().c_str());
+}
+
+bool Messenger::isInFieldsCountRange(const QStringList &packet, const Packet &protype)
+{
+	return packet.size() > protype.minSize && packet.size() < protype.maxSize;
 }

@@ -57,9 +57,5 @@ SOURCES += \
 	optionswindow.cpp \
 	peer.cpp \
 	pmwindow.cpp \
-	roomwindow.cpp \
-    discoverpacket.cpp \
-    roompacket.cpp \
-    pmpacket.cpp \
-    roomlistpacket.cpp
+	roomwindow.cpp
 

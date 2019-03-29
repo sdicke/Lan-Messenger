@@ -3,10 +3,12 @@
 
 #include "packet.hpp"
 
-class RoomListPacket : Packet
+class RoomListPacket : public Packet
 {
 	public:
-		RoomListPacket();
+		unsigned int minSize = 4;
+		unsigned int maxSize = 4;
+		enum fields {PROTOCOL, VERSION, TYPE, ROOM};
 };
 
 #endif // ROOMLISTPACKET_HPP

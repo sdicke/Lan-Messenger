@@ -2,7 +2,6 @@
 #define PACKET_HPP
 
 #include <limits>
-#include <QMap>
 
 class Packet
 {

@@ -3,9 +3,11 @@
 
 #include "packet.hpp"
 
-class PMPacket : Packet
+class PMPacket : public Packet
 {
 	public:
+		unsigned int minSize = 5;
+		enum fields {PROTOCOL, VERSION, TYPE, FROM, TEXT};
 		PMPacket();
 };
 
