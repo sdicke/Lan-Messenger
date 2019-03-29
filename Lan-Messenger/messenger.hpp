@@ -29,13 +29,11 @@
 #include "roomlistpacket.hpp"
 #include "roompacket.hpp"
 
-#define PCK_HEADER "288:0:"
-typedef QList<Peer> PeerList;
-
 class Messenger : public QObject
 {
 	Q_OBJECT
 public:
+	typedef QList<Peer> PeerList;
 	explicit Messenger(QObject *parent = nullptr);
 	QString Name();
 	QString ID();
@@ -61,6 +59,7 @@ private slots:
 	void onReadyRead();
 
 private:
+	QString PCK_HEADER = "288:0:";
 	Peer _mypeer;
 	PeerList _peers;
 	QUdpSocket _udp;
