@@ -15,7 +15,7 @@
 // along with this program.  If not, see <http://www.gnu.org/licenses/>.
 // 
 
-#include "messenger.h"
+#include "messenger.hpp"
 
 Messenger::Messenger(QObject *parent) :
 	QObject(parent)

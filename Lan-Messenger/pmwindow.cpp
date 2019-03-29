@@ -16,7 +16,7 @@
 // along with this program.  If not, see <http://www.gnu.org/licenses/>.
 // 
 
-#include "pmwindow.h"
+#include "pmwindow.hpp"
 #include "ui_pmwindow.h"
 
 PMWindow::PMWindow(QString &partner, QString myself, QWidget *parent) :

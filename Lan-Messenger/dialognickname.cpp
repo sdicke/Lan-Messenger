@@ -15,7 +15,7 @@
 // along with this program.  If not, see <http://www.gnu.org/licenses/>.
 // 
 
-#include "dialognickname.h"
+#include "dialognickname.hpp"
 #include "ui_dialognickname.h"
 
 using namespace std::literals::string_literals;

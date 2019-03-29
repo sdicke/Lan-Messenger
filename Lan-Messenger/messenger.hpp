@@ -23,7 +23,7 @@
 #include <QObject>
 #include <QString>
 #include <limits>
-#include "peer.h"
+#include "peer.hpp"
 
 
 #define PCK_HEADER "288:0:"

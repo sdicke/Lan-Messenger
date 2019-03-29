@@ -21,13 +21,13 @@
 #include <QtCore>
 #include <QMainWindow>
 #include <QLineEdit>
-#include "peer.h"
-#include "dialognickname.h"
-#include "messenger.h"
-#include "pmwindow.h"
-#include "roomwindow.h"
-#include "dialogroom.h"
-#include "dialogabout.h"
+#include "peer.hpp"
+#include "dialognickname.hpp"
+#include "messenger.hpp"
+#include "pmwindow.hpp"
+#include "roomwindow.hpp"
+#include "dialogroom.hpp"
+#include "dialogabout.hpp"
 #include "options.hpp"
 #include "optionswindow.hpp"
 

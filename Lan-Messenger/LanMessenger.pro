@@ -28,18 +28,22 @@ FORMS += \
 	roomwindow.ui
 
 HEADERS += \
-	dialogabout.h \
-	dialognickname.h \
-	dialogroom.h \
 	historysaver.hpp \
-	mainwindow.h \
-	messenger.h \
 	options.hpp \
 	optionswindow.hpp \
-	peer.h \
-	pmwindow.h \
-	roomwindow.h \
-    packet.hpp
+    packet.hpp \
+    discoverpacket.hpp \
+    roompacket.hpp \
+    pmpacket.hpp \
+    roomlistpacket.hpp \
+    roomwindow.hpp \
+    pmwindow.hpp \
+    peer.hpp \
+    messenger.hpp \
+    mainwindow.hpp \
+    dialogroom.hpp \
+    dialogabout.hpp \
+    dialognickname.hpp
 
 SOURCES += \
 	dialogabout.cpp \
@@ -53,5 +57,9 @@ SOURCES += \
 	optionswindow.cpp \
 	peer.cpp \
 	pmwindow.cpp \
-	roomwindow.cpp
+	roomwindow.cpp \
+    discoverpacket.cpp \
+    roompacket.cpp \
+    pmpacket.cpp \
+    roomlistpacket.cpp
 

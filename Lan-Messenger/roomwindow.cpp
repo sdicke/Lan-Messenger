@@ -15,7 +15,7 @@
 // along with this program.  If not, see <http://www.gnu.org/licenses/>.
 // 
 
-#include "roomwindow.h"
+#include "roomwindow.hpp"
 #include "ui_roomwindow.h"
 
 RoomWindow::RoomWindow(QWidget *parent) :

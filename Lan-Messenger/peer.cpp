@@ -15,7 +15,7 @@
 // along with this program.  If not, see <http://www.gnu.org/licenses/>.
 // 
 
-#include "peer.h"
+#include "peer.hpp"
 
 Peer::Peer()
 {

@@ -15,7 +15,7 @@
 // along with this program.  If not, see <http://www.gnu.org/licenses/>.
 //
 
-#include "dialogabout.h"
+#include "dialogabout.hpp"
 #include "ui_dialogabout.h"
 
 DialogAbout::DialogAbout(QWidget *parent) :
