@@ -74,6 +74,7 @@ private:
 	void handlePMDatagram(const QStringList &packet);
 	void handleRoomDatagram(const QStringList &packet);
 	void roomList(QString room);
+	void printHeaderFieldMismatch(const QString &type, unsigned int count);
 };
 
 #endif // MESSENGER_H

@@ -171,21 +171,49 @@ void Messenger::processTheDatagram(QByteArray data, QHostAddress sender)
 	}
 	if(packet[type] == "DISCOVERY")
 	{
-		this->handleDiscoverDatagram(packet, sender);
+		if (packet.size() > 3)
+		{
+			this->handleDiscoverDatagram(packet, sender);
+		}
+		else
+		{
+			this->printHeaderFieldMismatch("DISCOVERY", 4);
+		}
 	}
 
 	if(packet[type] == "ROOMLIST")
 	{
-		this->handleRoomListDatagram(packet, sender);
+		if (packet.size() > 3)
+		{
+			this->handleRoomListDatagram(packet, sender);
+		}
+		else
+		{
+			this->printHeaderFieldMismatch("ROOMLIST", 4);
+		}
 	}
 
 	if(packet[type] == "PM")
 	{
-		this->handlePMDatagram(packet);
+		if (packet.size() > 4)
+		{
+			this->handlePMDatagram(packet);
+		}
+		else
+		{
+			this->printHeaderFieldMismatch("PM", 5);
+		}
 	}
 	if(packet[type] == "ROOM")
 	{
-		this->handleRoomDatagram(packet);
+		if (packet.size() > 5)
+		{
+			this->handleRoomDatagram(packet);
+		}
+		else
+		{
+			this->printHeaderFieldMismatch("ROOM", 6);
+		}
 	}
 }
 
@@ -334,3 +362,9 @@ void Messenger::roomList(QString room)
 	_udp.writeDatagram(packet.toUtf8(), target, 2880);
 }
 
+//Do not expose this function to outside
+void Messenger::printHeaderFieldMismatch(const QString &type, unsigned int count)
+{
+	QString message("Warning: Header Field Mismatch: "  + type + " packet with lesser than " + QString::number(count) + "fields.");
+	qWarning(message.toStdString().c_str());
+}
