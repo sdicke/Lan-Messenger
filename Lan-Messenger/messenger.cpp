@@ -69,7 +69,7 @@ void Messenger::onTimerdiscovery()
 		{
 			continue;
 		}
-		for(int j=0; j < _roomslist[room].count(); j++)
+		for(int j = 0; j < _roomslist[room].count(); j++)
 		{
 			if(_roomslist[room].at(j).Lastseen.secsTo(QTime::currentTime()) > 10)
 			{
@@ -117,7 +117,7 @@ void Messenger::onReadyRead()
 void Messenger::log(QString data, QString destination, bool isSent)
 {
 	QString message;
-	message += isSent? "Sent	 ":"Received ";
+	message += isSent? "Sent ":"Received ";
 	message += QString::number(data.length()) + " bytes";
 	message += isSent? " to   ":" from ";
 	QString fill;
@@ -256,7 +256,7 @@ void Messenger::handleRoomListDatagram(const QStringList &packet, const QHostAdd
 	}
 
 	int found = -1;
-	for(int i = 0; i<_roomslist[room].count(); i++)
+	for(int i = 0; i < _roomslist[room].count(); i++)
 	{
 		if(_roomslist[room][i].ID() == packet[4])
 		{
@@ -290,7 +290,7 @@ void Messenger::handleRoomListDatagram(const QStringList &packet, const QHostAdd
 void Messenger::handlePMDatagram(const QStringList &packet) {
 	QString from = packet[3];
 	QString text = packet[4];
-	for(int i=5; i<packet.count(); i++)
+	for(int i=5; i < packet.count(); i++)
 	{
 		text += ":" + packet[i];
 	}
@@ -301,7 +301,7 @@ void Messenger::handleRoomDatagram(const QStringList &packet) {
 	QString room = packet[3];
 	QString from = packet[4];
 	QString text = packet[5];
-	for(int i=6; i<packet.count(); i++)
+	for(int i=6; i < packet.count(); i++)
 	{
 		text += ":" + packet[i];
 	}
