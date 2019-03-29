@@ -172,7 +172,7 @@ void Messenger::processTheDatagram(QByteArray data, QHostAddress sender)
 	if(packet[type] == "DISCOVERY")
 	{
 		DiscoverPacket obj;
-		if (!this->isInFieldsCountRange(packet, obj))
+		if (this->isInFieldsCountRange(packet, obj))
 		{
 			this->handleDiscoverDatagram(packet, sender);
 		}
