@@ -59,6 +59,7 @@ private slots:
 	void onReadyRead();
 
 private:
+	static constexpr unsigned int port = 2880;
 	const QString PCK_HEADER = "288:0:";
 	Peer _mypeer;
 	PeerList _peers;
